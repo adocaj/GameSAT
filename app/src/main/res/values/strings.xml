@@ -14,4 +14,9 @@
     <string name="play_word">Word Play</string>
     <string name="play_passage">Passage Play</string>
     <string name="back">Back</string>
+    <string name="exit">Exit</string>
+    <string name="question1">The word <u>placid</u> most nearly means:</string>
+    <string name="question1P">He no longer tried to fight, but acted stunned as if for the first time there was some illumination, some comprehension of the enormity of the resistance in a once placid kingdom.
+        As used in the sentece above <u>placid</u> most nearly means:</string>
+    <string name="confirm">Confirm</string>
 </resources>

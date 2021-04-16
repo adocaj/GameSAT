@@ -27,7 +27,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="112dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/lettuce"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -39,7 +39,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:background="@color/colorAccent"
+            android:background="@color/transparent"
             android:text="@string/train_word"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -51,7 +51,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="112dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/lettuce"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -63,7 +63,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:background="@color/colorAccent"
+            android:background="@color/transparent"
             android:text="@string/train_passage"
             android:textColor="@color/white"
             android:textSize="18sp" />
@@ -74,7 +74,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="76dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/lettuce"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -86,11 +86,14 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:background="@color/colorAccent"
+            android:background="@color/transparent"
             android:text="@string/back"
             android:textColor="@color/white"
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

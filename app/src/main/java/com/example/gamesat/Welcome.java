@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class Welcome extends AppCompatActivity {
 
-    Button buttonPlay, buttonTrain;
+    Button buttonPlay, buttonTrain, buttonExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class Welcome extends AppCompatActivity {
 
         buttonPlay = (Button) findViewById(R.id.buttonPlay);
         buttonTrain = (Button) findViewById(R.id.buttonTrain);
+        buttonExit = (Button) findViewById(R.id.buttonExit);
 
 
         buttonTrain.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,14 @@ public class Welcome extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        buttonExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
             }
         });
 

@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#808080</color>
     <color name="colorAccent">#11000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="mistyrose">#FFE4E1</color>
+    <color name="midnightBlue">#191970</color>
+    <color name="velvetBlue">#162252</color>
+    <color name="lettuce">#3B5323</color>
+    <color name="bistre">#412B15</color>
+    <color name="alziran">#a71622</color>
 </resources>

@@ -4,6 +4,125 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_train"
+    android:theme="@android:style/Theme.Wallpaper.NoTitleBar"
     tools:context=".PassageTrainQuestion">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+
+    <TextView
+        android:id="@+id/text_vew_word_question1"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:gravity="left"
+        android:text="@string/question1P"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_word_play"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="364dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radio_button_word1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calm"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/radio_button_word2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hinder"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/radio_button_word3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rough"
+            android:textColor="@color/white" />
+
+
+    </RadioGroup>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewWordPlayConfirm"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_word_play">
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/buttonPlayPassage"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/transparent"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/cardViewWordPlayConfirm"
+        tools:layout_editor_absoluteY="605dp" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewBackTrain"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="@color/colorAccent"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewWordPlayConfirm">
+
+        <Button
+            android:id="@+id/buttonBackPlay"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+             />
+    </androidx.cardview.widget.CardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
