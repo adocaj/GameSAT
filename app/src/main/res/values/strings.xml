@@ -19,4 +19,7 @@
     <string name="question1P">He no longer tried to fight, but acted stunned as if for the first time there was some illumination, some comprehension of the enormity of the resistance in a once placid kingdom.
         As used in the sentece above <u>placid</u> most nearly means:</string>
     <string name="confirm">Confirm</string>
+    <string name="skip">Skip Question</string>
+    <string name="bestScoreWord">Word Leader Board</string>
+    <string name="bestScorePassage">Passage Leader Board</string>
 </resources>

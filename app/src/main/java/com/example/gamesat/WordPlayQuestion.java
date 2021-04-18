@@ -9,16 +9,16 @@ import android.widget.Button;
 
 public class WordPlayQuestion extends AppCompatActivity {
 
-    Button buttonBackPlay;
+    Button buttonBackWordPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_play_question);
 
-        buttonBackPlay = (Button) findViewById(R.id.buttonBackPlay);
+        buttonBackWordPlay = (Button) findViewById(R.id.buttonBackWordPlay);
 
-        buttonBackPlay.setOnClickListener(new View.OnClickListener() {
+        buttonBackWordPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Welcome.class);

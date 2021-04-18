@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class WordTrainQuestion extends AppCompatActivity {
 
-    Button buttonBackTrain;
+    Button buttonBackWordTrain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,9 @@ public class WordTrainQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_word_train_question);
 
 
-        buttonBackTrain = (Button) findViewById(R.id.buttonBackTrain);
+        buttonBackWordTrain = (Button) findViewById(R.id.buttonBackWordTrain);
 
-        buttonBackTrain.setOnClickListener(new View.OnClickListener() {
+        buttonBackWordTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Welcome.class);

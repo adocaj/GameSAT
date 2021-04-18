@@ -9,16 +9,16 @@ import android.widget.Button;
 
 public class PassagePlayQuestion extends AppCompatActivity {
 
-    Button buttonBackPlay;
+    Button buttonBackPassPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passage_play_question);
 
-        buttonBackPlay = (Button) findViewById(R.id.buttonBackPlay);
+        buttonBackPassPlay = (Button) findViewById(R.id.buttonBackPassPlay);
 
-        buttonBackPlay.setOnClickListener(new View.OnClickListener() {
+        buttonBackPassPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Welcome.class);

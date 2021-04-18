@@ -36,83 +36,103 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radio_group_word_play"
+        android:id="@+id/radio_group_pass_train"
         android:layout_width="350dp"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
         android:layout_centerVertical="true"
-        android:layout_marginTop="364dp"
+        android:layout_marginTop="384dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/radio_button_word1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Calm"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/radio_button_word2"
+            android:id="@+id/radio_button_pass_train1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hinder"
-            android:textColor="@color/white" />
+            android:layout_margin="3dp"
+            android:background="@drawable/radio_selector"
+            android:button="@color/transparent"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@drawable/text_color"
+            />
 
         <RadioButton
-            android:id="@+id/radio_button_word3"
+            android:id="@+id/radio_button_pass_train2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/radio_selector"
+            android:button="@color/transparent"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Calm"
+            android:textColor="@drawable/text_color" />
+
+        <RadioButton
+            android:id="@+id/radio_button_pass_train3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rough"
-            android:textColor="@color/white" />
-
+            android:layout_margin="3dp"
+            android:background="@drawable/radio_selector"
+            android:button="@color/transparent"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@drawable/text_color"
+            />
 
     </RadioGroup>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewWordPlayConfirm"
+        android:id="@+id/cardViewPassTrainConfirm"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        app:cardBackgroundColor="@color/lettuce"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_word_play">
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_pass_train">
+
+
+        <Button
+            android:id="@+id/buttonPassTrainConfirm"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@color/transparent"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/cardViewPassTrainConfirm"
+            tools:layout_editor_absoluteY="605dp" />
 
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/buttonPlayPassage"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="@color/transparent"
-        android:text="@string/confirm"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/cardViewWordPlayConfirm"
-        tools:layout_editor_absoluteY="605dp" />
-
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewBackTrain"
+        android:id="@+id/cardViewBackPassTrain"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/lettuce"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewWordPlayConfirm">
+        app:layout_constraintTop_toBottomOf="@+id/cardViewPassTrainConfirm">
 
         <Button
-            android:id="@+id/buttonBackPlay"
+            android:id="@+id/buttonBackPassTrain"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -120,9 +140,10 @@
             android:text="@string/back"
             android:textColor="@color/white"
             android:textSize="18sp"
-             />
+            app:layout_constraintBottom_toBottomOf="@id/cardViewBackPassTrain"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.cardview.widget.CardView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
