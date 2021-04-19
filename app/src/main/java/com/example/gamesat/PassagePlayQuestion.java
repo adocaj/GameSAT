@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class PassagePlayQuestion extends AppCompatActivity {
 
-    Button buttonBackPassPlay;
+    Button buttonBackPassPlay, buttonPassPlayExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,8 @@ public class PassagePlayQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_passage_play_question);
 
         buttonBackPassPlay = (Button) findViewById(R.id.buttonBackPassPlay);
-
+        buttonPassPlayExit = (Button) findViewById(R.id.buttonPassPlayExit);
+    //-----------------------------------------------------------------------------------
         buttonBackPassPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -26,6 +27,17 @@ public class PassagePlayQuestion extends AppCompatActivity {
                 finish();
             }
         });
+    //-------------------------------------------------------------------------------------
+
+        buttonPassPlayExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+    //-------------------------------------------------------------------
 
     }
 }

@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class PlayScreen extends AppCompatActivity {
 
-    Button buttonBackPlay, buttonPlayWord, buttonPlayPassage;
+    Button buttonBackPlay, buttonPlayWord, buttonPlayPassage, buttonPlayExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +21,9 @@ public class PlayScreen extends AppCompatActivity {
         buttonBackPlay = (Button) findViewById(R.id.buttonBackPlay);
         buttonPlayWord = (Button) findViewById(R.id.buttonPlayWord);
         buttonPlayPassage = (Button) findViewById(R.id.buttonPlayPassage);
+        buttonPlayExit = (Button) findViewById(R.id.buttonPlayExit);
 
-
+    //----------------------------------------------------------------------------------
         buttonBackPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +32,7 @@ public class PlayScreen extends AppCompatActivity {
                 finish();
             }
         });
-
+    //-----------------------------------------------------------------------------------------
 
         buttonPlayWord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +42,7 @@ public class PlayScreen extends AppCompatActivity {
                 finish();
             }
         });
-
+    //-------------------------------------------------------------------------------------
         buttonPlayPassage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +51,17 @@ public class PlayScreen extends AppCompatActivity {
                 finish();
             }
         });
+    //---------------------------------------------------------------------------------
+        buttonPlayExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+
+    //---------------------------------------------------------------------------
 
     }
 }

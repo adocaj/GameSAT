@@ -9,7 +9,9 @@ import android.widget.Button;
 
 public class WordPlayQuestion extends AppCompatActivity {
 
-    Button buttonBackWordPlay;
+    Button buttonBackWordPlay, buttonWordPlayExit;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +19,8 @@ public class WordPlayQuestion extends AppCompatActivity {
         setContentView(R.layout.activity_word_play_question);
 
         buttonBackWordPlay = (Button) findViewById(R.id.buttonBackWordPlay);
-
+        buttonWordPlayExit = (Button) findViewById(R.id.buttonWordPlayExit);
+    //-----------------------------------------------------------------------------------
         buttonBackWordPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -26,7 +29,17 @@ public class WordPlayQuestion extends AppCompatActivity {
                 finish();
             }
         });
+    //--------------------------------------------------------------------------------------
 
+        buttonWordPlayExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+    //-------------------------------------------------------------------------------------
 
     }
 }

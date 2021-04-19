@@ -21,6 +21,7 @@ public class SignUp extends AppCompatActivity {
     TextInputEditText inputTextUserName, inputTextPassword;
     Button buttonSignUp;
     TextView textViewLogIn;
+    Button buttonSignUpExit;
 
 
     @Override
@@ -34,8 +35,9 @@ public class SignUp extends AppCompatActivity {
         inputTextPassword = findViewById(R.id.passwordSignUp);
         buttonSignUp = findViewById(R.id.buttonSignUp);
         textViewLogIn = findViewById(R.id.loginText);
+        buttonSignUpExit = (Button) findViewById(R.id.buttonSignUpExit);
 
-
+    //-------------------------------------------------------------------------------
         textViewLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,7 +47,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-
+    //---------------------------------------------------------------------------------
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,8 +103,16 @@ public class SignUp extends AppCompatActivity {
 
             }
         });
+    //-------------------------------------------------------------------------------------------------------------------
+        buttonSignUpExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
 
-
+    //-------------------------------------------------------------------------------
 
 
     }

@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class WordTrainQuestion extends AppCompatActivity {
 
-    Button buttonBackWordTrain;
+    Button buttonBackWordTrain, buttonWordTrainExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,8 @@ public class WordTrainQuestion extends AppCompatActivity {
 
 
         buttonBackWordTrain = (Button) findViewById(R.id.buttonBackWordTrain);
-
+        buttonWordTrainExit = (Button) findViewById(R.id.buttonWordTrainExit);
+    //---------------------------------------------------------------------------------
         buttonBackWordTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,8 +28,17 @@ public class WordTrainQuestion extends AppCompatActivity {
                 finish();
             }
         });
+    //----------------------------------------------------------------------------
 
+        buttonWordTrainExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
 
+    //------------------------------------------------------------------------
 
     }
 }

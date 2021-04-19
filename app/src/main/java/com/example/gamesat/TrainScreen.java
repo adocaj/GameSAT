@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class TrainScreen extends AppCompatActivity {
 
-    Button buttonBackTrain, buttonTrainWord, buttonTrainPassage;
+    Button buttonBackTrain, buttonTrainWord, buttonTrainPassage, buttonTrainExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,8 @@ public class TrainScreen extends AppCompatActivity {
         buttonBackTrain = (Button) findViewById(R.id.buttonBackTrain);
         buttonTrainWord = (Button) findViewById(R.id.buttonTrainWord);
         buttonTrainPassage = (Button) findViewById(R.id.buttonTrainPassage);
-
+        buttonTrainExit = (Button) findViewById(R.id.buttonTrainExit);
+    //----------------------------------------------------------------------------------
         buttonBackTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,7 +34,7 @@ public class TrainScreen extends AppCompatActivity {
             }
         });
 
-
+    //-------------------------------------------------------------------------------------
         buttonTrainWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +44,7 @@ public class TrainScreen extends AppCompatActivity {
             }
         });
 
-
+    //------------------------------------------------------------------------------------
         buttonTrainPassage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +53,18 @@ public class TrainScreen extends AppCompatActivity {
                 finish();
             }
         });
+    //-----------------------------------------------------------------------------------
+        buttonTrainExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+
+    //---------------------------------------------------------------------------
+
 
     }
 }

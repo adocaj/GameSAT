@@ -74,24 +74,29 @@
         android:id="@+id/cardViewExit"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="112dp"
-        app:cardBackgroundColor="@color/colorAccent"
+        android:layout_marginTop="28dp"
+        app:cardBackgroundColor="@color/burgundy"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewTrain">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/buttonExit"
-            android:layout_width="50dp"
+            android:layout_width="39dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:background="@color/velvetBlue"
+            android:background="@color/transparent"
             android:text="@string/exit"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="337dp"
+            tools:layout_editor_absoluteY="31dp" />
+
     </androidx.cardview.widget.CardView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

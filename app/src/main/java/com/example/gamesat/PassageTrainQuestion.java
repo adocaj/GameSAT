@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class PassageTrainQuestion extends AppCompatActivity {
 
-    Button buttonBackPassTrain;
+    Button buttonBackPassTrain, buttonPassTrainExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,8 @@ public class PassageTrainQuestion extends AppCompatActivity {
 
 
         buttonBackPassTrain = (Button) findViewById(R.id.buttonBackPassTrain);
-
+        buttonPassTrainExit = (Button) findViewById(R.id.buttonPassTrainExit);
+    //------------------------------------------------------------------------------
         buttonBackPassTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,6 +28,17 @@ public class PassageTrainQuestion extends AppCompatActivity {
                 finish();
             }
         });
+    //-------------------------------------------------------------------------------
+
+        buttonPassTrainExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+    //-------------------------------------------------------------------------------
 
     }
 }
