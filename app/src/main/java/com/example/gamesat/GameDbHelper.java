@@ -52,7 +52,6 @@ public class GameDbHelper extends SQLiteOpenHelper {
     }
     //*******************************************************************
 
-
     // fill word database with word questions
 
     private void fillWordQuestionsTable(){

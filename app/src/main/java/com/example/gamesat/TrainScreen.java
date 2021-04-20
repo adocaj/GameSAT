@@ -53,7 +53,7 @@ public class TrainScreen extends AppCompatActivity {
                 finish();
             }
         });
-    //-----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
         buttonTrainExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

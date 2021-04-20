@@ -19,7 +19,7 @@ public class WordTrainQuestion extends AppCompatActivity {
 
         buttonBackWordTrain = (Button) findViewById(R.id.buttonBackWordTrain);
         buttonWordTrainExit = (Button) findViewById(R.id.buttonWordTrainExit);
-    //---------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------
         buttonBackWordTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -24,7 +24,7 @@ public class Welcome extends AppCompatActivity {
         buttonTrain = (Button) findViewById(R.id.buttonTrain);
         buttonExit = (Button) findViewById(R.id.buttonExit);
 
-
+    //--------------------------------------------------------------------------------
         buttonTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +34,7 @@ public class Welcome extends AppCompatActivity {
                 finish();
             }
         });
-
+    //----------------------------------------------------------------------------------
         buttonPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +44,7 @@ public class Welcome extends AppCompatActivity {
                 finish();
             }
         });
-
+    //------------------------------------------------------------------------------------
         buttonExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +52,7 @@ public class Welcome extends AppCompatActivity {
                 System.exit(0);
             }
         });
-
+    //----------------------------------------------------------------------------
 
     }
 }

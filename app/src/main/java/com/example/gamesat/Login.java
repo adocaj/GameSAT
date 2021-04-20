@@ -100,7 +100,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-    //----------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
         buttonLoginExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

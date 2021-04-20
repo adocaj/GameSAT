@@ -58,5 +58,4 @@ public class WordQuestion {
         this.answerNr = answerNr;
     }
 
-
 }

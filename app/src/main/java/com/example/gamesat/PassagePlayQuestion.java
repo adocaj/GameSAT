@@ -27,7 +27,7 @@ public class PassagePlayQuestion extends AppCompatActivity {
                 finish();
             }
         });
-    //-------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------
 
         buttonPassPlayExit.setOnClickListener(new View.OnClickListener() {
             @Override

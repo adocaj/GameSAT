@@ -12,7 +12,6 @@ public class WordPlayQuestion extends AppCompatActivity {
     Button buttonBackWordPlay, buttonWordPlayExit;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
