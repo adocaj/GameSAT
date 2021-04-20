@@ -1,20 +1,25 @@
 package com.example.gamesat;
 
+/*
+ * The inner makeup of a word question object.
+ */
 public class WordQuestion {
     private String question;
     private String option1;
     private String option2;
     private String option3;
     private int answerNr;
+    private int level;
 
     public WordQuestion(){}
 
-    public WordQuestion(String question, String option1, String option2, String option3, int answerNr) {
+    public WordQuestion(String question, String option1, String option2, String option3, int answerNr, int level) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.answerNr = answerNr;
+        this.level = level;
     }
 
 
@@ -56,6 +61,14 @@ public class WordQuestion {
 
     public void setAnswerNr(int answerNr) {
         this.answerNr = answerNr;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
 }

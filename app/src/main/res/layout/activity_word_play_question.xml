@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/text_view_word_score"
+        android:id="@+id/textViewWordScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
@@ -36,7 +36,7 @@
 
 
     <TextView
-        android:id="@+id/text_view_word_level"
+        android:id="@+id/textViewWordLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -47,11 +47,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_word_score" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewWordScore" />
 
 
     <TextView
-        android:id="@+id/text_view_word_countdown"
+        android:id="@+id/textViewWordCountDown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="216dp"
@@ -65,12 +65,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_vew_word_question1"
+        android:id="@+id/textViewWordQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="336dp"
         android:gravity="center"
-        android:text="@string/question1"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -81,7 +80,7 @@
 
 
     <RadioGroup
-        android:id="@+id/radio_group_word_play"
+        android:id="@+id/rbGroupWordPlay"
         android:layout_width="350dp"
         android:layout_height="180dp"
         android:layout_centerVertical="true"
@@ -92,10 +91,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
-            android:id="@+id/radio_button_word_play1"
+            android:id="@+id/rbWordPlay1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hinder"
             android:textSize="15sp"
             android:layout_margin="3dp"
             android:background="@drawable/radio_selector"
@@ -107,7 +105,7 @@
             />
 
         <RadioButton
-            android:id="@+id/radio_button_word_play2"
+            android:id="@+id/rbWordPlay2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -116,15 +114,13 @@
             android:elevation="4dp"
             android:gravity="center"
             android:padding="16dp"
-            android:text="Calm"
             android:textSize="15sp"
             android:textColor="@drawable/text_color" />
 
         <RadioButton
-            android:id="@+id/radio_button_word_play3"
+            android:id="@+id/rbWordPlay3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rough"
             android:textSize="15sp"
             android:layout_margin="3dp"
             android:background="@drawable/radio_selector"
@@ -148,10 +144,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_word_play">
+        app:layout_constraintTop_toBottomOf="@+id/rbGroupWordPlay">
 
         <Button
-            android:id="@+id/buttonPlayWord"
+            android:id="@+id/bConfirmWordPlay"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -205,7 +201,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonSkipWordQuestPlay"
+            android:id="@+id/bSkipWordPlay"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
