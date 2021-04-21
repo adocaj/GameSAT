@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,10 +41,13 @@ public class WordPlayQuestion extends AppCompatActivity {
     private ColorStateList textClrDefaultRb;
 
     private WordQuestion currentWQ;//current word question
-    private int scoreWordPlay;
+    private int scoreWordPlay = 5;
+    private int minScore = 0;
+    private int maxScore = 30;
+
     private boolean wordQuestAnswered; // what happens when button is clicked
     private int questCountTotalLev1;
-    private int questCounter;
+    private int questCounter = 0; // index starts at 0
 
     //-----------------------------------------------------
 
@@ -78,6 +83,23 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         showNextWordPlayQuestion();
 
+    //--------------------------------------------------------------------
+        bConfirmWordPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!wordQuestAnswered){
+                    if (rbWordPlay1.isChecked() || rbWordPlay2.isChecked() || rbWordPlay3.isChecked()){
+                        //check answer
+                        checkWPAnswer();
+                    } else {
+                        Toast.makeText(WordPlayQuestion.this, "Please select an answer.", Toast.LENGTH_SHORT).show();
+                    }
+                } else { // question answered
+                    showNextWordPlayQuestion();
+                }
+            }
+        });
+
         //---------------------------------------------------------------------
     //-----------------------------------------------------------------------------------
         buttonBackWordPlay.setOnClickListener(new View.OnClickListener() {
@@ -103,13 +125,15 @@ public class WordPlayQuestion extends AppCompatActivity {
     }
 
     private void showNextWordPlayQuestion(){
-        //rbWordPlay1.setTextColor(textClrDefaultRb);
-        //rbWordPlay2.setTextColor(textClrDefaultRb);
-        //rbWordPlay3.setTextColor(textClrDefaultRb);
+        rbWordPlay1.setTextColor(textClrDefaultRb);
+        rbWordPlay2.setTextColor(textClrDefaultRb);
+        rbWordPlay3.setTextColor(textClrDefaultRb);
         rbGroupWordPlay.clearCheck();
-        questCounter = 1;
+        //questCounter = 1;
 
-        if (questCounter < questCountTotalLev1){
+        // if we still have questions, and the score is not 0 or 30
+        if (questCounter < questCountTotalLev1 && scoreWordPlay != minScore &&
+                scoreWordPlay != maxScore){
             currentWQ = wordQuestionListLev1.get(questCounter);
 
             textViewWordQuestion.setText(currentWQ.getQuestion()); // display the question
@@ -118,16 +142,70 @@ public class WordPlayQuestion extends AppCompatActivity {
             rbWordPlay3.setText(currentWQ.getOption3());
 
             textViewWordLevel.setText("Level: " + currentWQ.getLevel());
+            textViewWordScore.setText("Score: " + scoreWordPlay);
 
             questCounter += 1;
             wordQuestAnswered = false;
+            bConfirmWordPlay.setText("Confirm");
 
-        } else {
+        } else { // score reaches 0 or 30, or no more questions
             finishWordPlay();
         }
     }
 
+    //******************************************************************
+    private void checkWPAnswer(){ // chech word play answer
+        wordQuestAnswered = true; // question has been answered
+        RadioButton rbSelected = findViewById(rbGroupWordPlay.getCheckedRadioButtonId());
+        int ansNumSelect = rbGroupWordPlay.indexOfChild(rbSelected) + 1; // add 1 since starts at 0
+
+        if (ansNumSelect == currentWQ.getAnswerNr()){ // if correct choice selected
+
+            // increase score
+            scoreWordPlay += 1;
+            textViewWordScore.setText("Score: " + scoreWordPlay); // display new score
+        } else {
+            scoreWordPlay -= 1; // decease score
+            textViewWordScore.setText("Score: " + textViewWordScore);
+        }
+
+        // show solution regardless
+        showSolutionWP();
+    }
+
+    //******************************************************************
+    private void showSolutionWP(){
+        rbWordPlay1.setTextColor(Color.RED);
+        rbWordPlay2.setTextColor(Color.RED);
+        rbWordPlay3.setTextColor(Color.RED);
+
+        switch (currentWQ.getAnswerNr()){
+            case 1:
+                rbWordPlay1.setTextColor(Color.WHITE);
+                rbWordPlay1.setText(currentWQ.getOption1() + " is correct.");
+                break;
+            case 2:
+                rbWordPlay2.setTextColor(Color.WHITE);
+                rbWordPlay2.setText(currentWQ.getOption2() + " is correct.");
+                break;
+            case 3:
+                rbWordPlay3.setTextColor(Color.WHITE);
+                rbWordPlay3.setText(currentWQ.getOption3() + " is correct.");
+                break;
+        }
+
+        if (questCounter < questCountTotalLev1){
+            bConfirmWordPlay.setText("Next");
+        } else {
+            bConfirmWordPlay.setText("Finish");
+        }
+    }
+
+    //******************************************************************
     private void finishWordPlay() { // could be an advanced to level 2
+        // for now go to welcome screen
+        Intent intent = new Intent(getApplicationContext(), Welcome.class);
+        startActivity(intent);
         finish();
     }
 
