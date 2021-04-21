@@ -13,6 +13,7 @@ public class Welcome extends AppCompatActivity {
 
     Button buttonPlay, buttonTrain, buttonExit;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -24,12 +25,16 @@ public class Welcome extends AppCompatActivity {
         buttonTrain = (Button) findViewById(R.id.buttonTrain);
         buttonExit = (Button) findViewById(R.id.buttonExit);
 
+        // username info ---||||----
+        String usernameW = getIntent().getStringExtra("usernameWelcome");
+
     //--------------------------------------------------------------------------------
         buttonTrain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), TrainScreen.class);
+                intent.putExtra("usernameTrain", usernameW);
                 startActivity(intent);
                 finish();
             }
@@ -40,6 +45,7 @@ public class Welcome extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
+                intent.putExtra("usernamePlay", usernameW);
                 startActivity(intent);
                 finish();
             }

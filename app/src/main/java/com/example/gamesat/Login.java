@@ -79,6 +79,7 @@ public class Login extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), Welcome.class); // move to the welcome screen
+                                        intent.putExtra("usernameWelcome",username); // pass the username info
                                         startActivity(intent);
                                         finish();
 

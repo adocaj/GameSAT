@@ -13,6 +13,7 @@ public class PlayScreen extends AppCompatActivity {
 
     Button buttonBackPlay, buttonPlayWord, buttonPlayPassage, buttonPlayExit;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,8 @@ public class PlayScreen extends AppCompatActivity {
         buttonPlayWord = (Button) findViewById(R.id.buttonPlayWord);
         buttonPlayPassage = (Button) findViewById(R.id.buttonPlayPassage);
         buttonPlayExit = (Button) findViewById(R.id.buttonPlayExit);
+
+        String usernameP = getIntent().getStringExtra("usernamePlay");
 
     //----------------------------------------------------------------------------------
         buttonBackPlay.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +41,7 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), WordPlayQuestion.class);
+                intent.putExtra("usernameWP", usernameP);
                 startActivity(intent);
                 finish();
             }
@@ -47,6 +51,7 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),PassagePlayQuestion.class);
+                intent.putExtra("usernameWT", usernameP);
                 startActivity(intent);
                 finish();
             }

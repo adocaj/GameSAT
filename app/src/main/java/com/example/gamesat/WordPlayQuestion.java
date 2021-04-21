@@ -48,6 +48,7 @@ public class WordPlayQuestion extends AppCompatActivity {
     private boolean wordQuestAnswered; // what happens when button is clicked
     private int questCountTotalLev1;
     private int questCounter = 0; // index starts at 0
+    private String userName_;
 
     //-----------------------------------------------------
 
@@ -58,6 +59,9 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         buttonBackWordPlay = (Button) findViewById(R.id.buttonBackWordPlay);
         buttonWordPlayExit = (Button) findViewById(R.id.buttonWordPlayExit);
+
+        //--------------||||-------
+        userName_ = getIntent().getStringExtra("usernameWP");
         //--------------------------------------------------------------------
 
         textViewWordQuestion = findViewById(R.id.textViewWordQuestion);
@@ -141,7 +145,8 @@ public class WordPlayQuestion extends AppCompatActivity {
             rbWordPlay2.setText(currentWQ.getOption2());
             rbWordPlay3.setText(currentWQ.getOption3());
 
-            textViewWordLevel.setText("Level: " + currentWQ.getLevel());
+            //textViewWordLevel.setText("Level: " + currentWQ.getLevel());
+            textViewWordLevel.setText(userName_);
             textViewWordScore.setText("Score: " + scoreWordPlay);
 
             questCounter += 1;
