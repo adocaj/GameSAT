@@ -41,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@color/velvetBlue"
-        android:text="Level: 1"
         android:textColor="@color/white"
+        android:text="@string/level"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
@@ -72,6 +72,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:text="@string/questionW"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,6 +103,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:textColor="@drawable/text_color"
+            android:text="@string/op1"
             />
 
         <RadioButton
@@ -115,7 +117,9 @@
             android:gravity="center"
             android:padding="16dp"
             android:textSize="15sp"
-            android:textColor="@drawable/text_color" />
+            android:textColor="@drawable/text_color"
+            android:text="@string/op2"
+            />
 
         <RadioButton
             android:id="@+id/rbWordPlay3"
@@ -129,6 +133,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:textColor="@drawable/text_color"
+            android:text="@string/op3"
             />
 
     </RadioGroup>

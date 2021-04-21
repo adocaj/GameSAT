@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="284dp"
         android:gravity="center"
-        android:text="@string/question1"
+        android:text="@string/questionW"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"

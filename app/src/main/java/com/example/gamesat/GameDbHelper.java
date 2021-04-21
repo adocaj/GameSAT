@@ -20,7 +20,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "GameSat.db";
     //private static final String DATABASE_NAME = "TEST1.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
 
 
     public GameDbHelper(Context context) {
@@ -34,9 +34,9 @@ public class GameDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         //------------------------------------------
-        // create word questions table1
+        // create word questions table
 
-        final String SQL_CREATE_WORD_QUEST_TABLE = "CREATE TABLE " +
+        final String SQL_CREATE_WORD_QUEST_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 WordQuestionsTable.TABLE_NAME + " ( " +
                 WordQuestionsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 WordQuestionsTable.COLUMN_QUESTION + " TEXT, " +
@@ -48,6 +48,11 @@ public class GameDbHelper extends SQLiteOpenHelper {
                 " ) ";
 
         db.execSQL(SQL_CREATE_WORD_QUEST_TABLE);
+
+        // create a unique index for the table to avoid duplicate questions
+        final String SQL_CREATE_WORD_QUEST_INDEX = "CREATE UNIQUE INDEX IF NOT EXISTS " +
+                "word_index ON " +  WordQuestionsTable.TABLE_NAME + "(" + WordQuestionsTable.COLUMN_QUESTION + ")";
+        db.execSQL(SQL_CREATE_WORD_QUEST_INDEX);
 
         //----------------------------------------------------------------------
 
@@ -67,10 +72,20 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
     public void fillWordQuestTable(){
 
-        WordQuestion wq1 = new WordQuestion("Aberration is closest in meaning to: ", "anomaly", "remote", "desist", 1, 1);
+        WordQuestion wq1 = new WordQuestion("Aberration is closest in meaning to:", "anomaly", "remote", "desist", 1, 1);
         addWordQuestion(wq1);
-        WordQuestion wq2 = new WordQuestion("Abreast is closest in meaning to: ", "uncertain", "plugged into", "above", 2, 1);
+
+        WordQuestion wq2 = new WordQuestion("Abreast is closest in meaning to:", "uncertain", "informed", "above", 2, 1);
         addWordQuestion(wq2);
+
+        WordQuestion wq3 = new WordQuestion("Abstain is closest in meaning to:", "entice", "refrain", "abhor", 2, 1);
+        addWordQuestion(wq3);
+
+        WordQuestion wq4 = new WordQuestion("Abyss is closest in meaning to:", "attract", "entice", "void", 3, 1);
+        addWordQuestion(wq4);
+
+        WordQuestion wq5 = new WordQuestion("Adept is closest in meaning to:", "proficient", "uncertain", "adorn", 1, 1);
+        addWordQuestion(wq5);
 
     }
 
@@ -86,7 +101,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
         cv.put(WordQuestionsTable.COLUMN_LEVEL, question.getLevel());
 
         // now we add the question to the database db
-        this.getWritableDatabase().insertOrThrow(WordQuestionsTable.TABLE_NAME,"", cv);
+        this.getWritableDatabase().insertWithOnConflict(WordQuestionsTable.TABLE_NAME,null, cv,SQLiteDatabase.CONFLICT_IGNORE);
 
     }
 

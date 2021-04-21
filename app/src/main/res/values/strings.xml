@@ -15,9 +15,12 @@
     <string name="play_passage">Passage Play</string>
     <string name="back">Back</string>
     <string name="exit">Exit</string>
-    <string name="question1">The word <u>placid</u> most nearly means:</string>
-    <string name="question1P">He no longer tried to fight, but acted stunned as if for the first time there was some illumination, some comprehension of the enormity of the resistance in a once placid kingdom.
-        As used in the sentece above <u>placid</u> most nearly means:</string>
+    <string name="questionW">Word Question:</string>
+    <string name="questionP">Passage Question:</string>
+    <string name="op1">Option 1</string>
+    <string name="op2">Option 2</string>
+    <string name="op3">Option 3</string>
+    <string name="level">Level</string>
     <string name="confirm">Confirm</string>
     <string name="skip">Skip Question</string>
     <string name="bestScoreWord">Word Leader Board</string>

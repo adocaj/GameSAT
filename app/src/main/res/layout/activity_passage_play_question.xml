@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
         android:gravity="left"
-        android:text="@string/question1P"
+        android:text="@string/questionP"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"

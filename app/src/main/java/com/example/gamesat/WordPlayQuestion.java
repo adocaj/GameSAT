@@ -38,10 +38,10 @@ public class WordPlayQuestion extends AppCompatActivity {
 
     private ColorStateList textClrDefaultRb;
 
-    private WordQuestion currentWQ;
+    private WordQuestion currentWQ;//current word question
     private int scoreWordPlay;
-    private boolean wordAnswered; // what happens when button is clicked
-    private int questCountTotal;
+    private boolean wordQuestAnswered; // what happens when button is clicked
+    private int questCountTotalLev1;
     private int questCounter;
 
     //-----------------------------------------------------
@@ -73,7 +73,7 @@ public class WordPlayQuestion extends AppCompatActivity {
         dbHelper.fillWordQuestTable();
         wordQuestionListLev1 = dbHelper.getAllWordQuestions(1); // create db and store all questions on list
 
-        questCountTotal = wordQuestionListLev1.size(); // total number of questions
+        questCountTotalLev1 = wordQuestionListLev1.size(); // total number of questions
         Collections.shuffle(wordQuestionListLev1);
 
         showNextWordPlayQuestion();
@@ -103,16 +103,33 @@ public class WordPlayQuestion extends AppCompatActivity {
     }
 
     private void showNextWordPlayQuestion(){
-        rbWordPlay1.setTextColor(textClrDefaultRb);
-        rbWordPlay2.setTextColor(textClrDefaultRb);
-        rbWordPlay3.setTextColor(textClrDefaultRb);
+        //rbWordPlay1.setTextColor(textClrDefaultRb);
+        //rbWordPlay2.setTextColor(textClrDefaultRb);
+        //rbWordPlay3.setTextColor(textClrDefaultRb);
         rbGroupWordPlay.clearCheck();
+        questCounter = 1;
 
-        if (questCounter < questCountTotal){
+        if (questCounter < questCountTotalLev1){
+            currentWQ = wordQuestionListLev1.get(questCounter);
 
+            textViewWordQuestion.setText(currentWQ.getQuestion()); // display the question
+            rbWordPlay1.setText(currentWQ.getOption1());
+            rbWordPlay2.setText(currentWQ.getOption2());
+            rbWordPlay3.setText(currentWQ.getOption3());
+
+            textViewWordLevel.setText("Level: " + currentWQ.getLevel());
+
+            questCounter += 1;
+            wordQuestAnswered = false;
+
+        } else {
+            finishWordPlay();
         }
     }
 
+    private void finishWordPlay() { // could be an advanced to level 2
+        finish();
+    }
 
 
 
