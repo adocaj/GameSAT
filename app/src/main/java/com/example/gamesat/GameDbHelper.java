@@ -56,8 +56,16 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //----------------------------------------------------------------------
 
+        // create table of users and their completion times
+
+
+
+
+        //----------------------------------------------------------------------
+
     }
 
+    //*********************************************************************
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -128,6 +136,6 @@ public class GameDbHelper extends SQLiteOpenHelper {
         cursor.close();
         return wordQuestionList;
     }
-
+    //*********************************************************************************************************************8
 
 }

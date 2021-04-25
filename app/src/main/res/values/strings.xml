@@ -27,4 +27,5 @@
     <string name="bestScorePassage">Passage Leader Board</string>
     <string name="gameOver">Game Over.</string>
     <string name="youWin">Congratulations! You Won.</string>
+    <string name="time">Time</string>
 </resources>
