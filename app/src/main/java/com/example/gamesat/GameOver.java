@@ -18,6 +18,8 @@ public class GameOver extends AppCompatActivity {
     private int passScoreExists;
     private TextView textViewGameOver;
 
+    //private long totalTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class GameOver extends AppCompatActivity {
 
         if (wordScoreExists > 0){
             gameScore = getIntent().getIntExtra("gameScoreW",0); // either get a word score
+            //totalTime = getIntent().getLongExtra("totalTimeW",0);
         } else {
             gameScore = getIntent().getIntExtra("gameScoreP", 0); // or a passage score
         }
@@ -63,6 +66,7 @@ public class GameOver extends AppCompatActivity {
         } else {
 
             textViewGameOver.setText("Congratulations! You won.");
+            //textViewGameOver.setText("Time: " + totalTime);
         }
     }
 

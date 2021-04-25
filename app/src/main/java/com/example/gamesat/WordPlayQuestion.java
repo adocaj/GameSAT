@@ -32,7 +32,9 @@ public class WordPlayQuestion extends AppCompatActivity {
 
     //----------------------------------------------------
     // countdown variables
-    private static final long Countdown_In_Millis = 30000;
+    private static final long CountDown_In_Millis_Lev_1 = 30000;
+    private static final long CountDown_In_Millis_Lev_2 = 20000;
+    private static final long CountDown_In_Millis_Lev_3 = 10000;
 
     //------------------------------------------------------
 
@@ -46,7 +48,7 @@ public class WordPlayQuestion extends AppCompatActivity {
     private RadioButton rbWordPlay3;
     private Button bConfirmWordPlay;
 
-    private List<WordQuestion> wordQuestionListLev1; // question outcome color
+    private List<WordQuestion> wordQuestionList; // question outcome color
 
     private ColorStateList textClrDefaultRb;
     private ColorStateList colorDefaultWCd; // countdown color default
@@ -60,10 +62,13 @@ public class WordPlayQuestion extends AppCompatActivity {
     private int maxScore = 5;
 
     private boolean wordQuestAnswered; // what happens when button is clicked
-    private int wordQCountLev1; // word questions count level 1
+    private int wordQuestionCount; // word questions count for a level
+    private int level = 1; // start at level 1
+
     private int questIndex = 0; // index starts at 0
     private int prevIndex = 0;
     private String userName_;
+    private long wordGameTime = 0L;
 
     //-----------------------------------------------------
 
@@ -96,10 +101,21 @@ public class WordPlayQuestion extends AppCompatActivity {
         GameDbHelper dbHelper = new GameDbHelper(this);
 
         dbHelper.fillWordQuestTable();
-        wordQuestionListLev1 = dbHelper.getAllWordQuestions(1); // create db and store all questions on list
 
-        wordQCountLev1 = wordQuestionListLev1.size(); // total number of questions
-        Collections.shuffle(wordQuestionListLev1);
+        switch (level){
+            case 1: // if level is 1 get level 1 questions
+                wordQuestionList = dbHelper.getAllWordQuestions(1);
+                break;
+            case 2:
+                wordQuestionList = dbHelper.getAllWordQuestions(2);
+                break;
+            case 3:
+                wordQuestionList = dbHelper.getAllWordQuestions(3);
+                break;
+        }
+
+        wordQuestionCount = wordQuestionList.size();
+        Collections.shuffle(wordQuestionList);
 
         showNextWordPlayQuestion();
 
@@ -150,13 +166,15 @@ public class WordPlayQuestion extends AppCompatActivity {
         rbWordPlay3.setTextColor(textClrDefaultRb);
         rbGroupWordPlay.clearCheck();
 
-        //--- find question index
-        questIndex = findQuestIndex();
 
-        // if we the score is not 0 or 30
+        // if the score is not minScore or maxScore
         if (scoreWordPlay != minScore && scoreWordPlay != maxScore){
 
-            currentWQ = wordQuestionListLev1.get(questIndex); // get word question
+            //--- find question index, a unique random value
+            questIndex = findQuestIndex();
+            currentWQ = wordQuestionList.get(questIndex); // get word question
+
+
 
             textViewWordQuestion.setText(currentWQ.getQuestion()); // display the question
             rbWordPlay1.setText(currentWQ.getOption1());
@@ -164,16 +182,25 @@ public class WordPlayQuestion extends AppCompatActivity {
             rbWordPlay3.setText(currentWQ.getOption3());
 
             //***********|||||||||||||||||||||||***************************
-            textViewWordLevel.setText("Level: " + currentWQ.getLevel());
+            //textViewWordLevel.setText("Level: " + currentWQ.getLevel());
             //textViewWordLevel.setText(userName_);
-            //textViewWordLevel.setText("Index: " + questIndex);
+            textViewWordLevel.setText("TimeVar: " + wordGameTime);
             textViewWordScore.setText("Score: " + scoreWordPlay);
 
             wordQuestAnswered = false;
             bConfirmWordPlay.setText("Confirm");
 
             //------------------------ set the timer
-            timeLeftInMillis = Countdown_In_Millis;
+            if (0 < scoreWordPlay && scoreWordPlay < 10){
+                timeLeftInMillis = CountDown_In_Millis_Lev_1;
+                level = 1;
+            } else if (10 <= scoreWordPlay && scoreWordPlay < 20){
+                timeLeftInMillis = CountDown_In_Millis_Lev_2;
+                level = 2;
+            } else if (20 <= scoreWordPlay && scoreWordPlay < 30){
+                timeLeftInMillis = CountDown_In_Millis_Lev_3;
+                level = 3;
+            }
             startCountDown();
 
         } else { // score reaches 0 or 30, or no more questions
@@ -224,10 +251,10 @@ public class WordPlayQuestion extends AppCompatActivity {
     private int findQuestIndex() {
         Random random = new Random();
 
-        int randomIndex = random.nextInt(wordQCountLev1);
+        int randomIndex = random.nextInt(wordQuestionCount);
 
         while (prevIndex == randomIndex) { // next quest is different from previous one
-            randomIndex = random.nextInt(wordQCountLev1);
+            randomIndex = random.nextInt(wordQuestionCount);
         }
         prevIndex = randomIndex;
 
@@ -239,6 +266,19 @@ public class WordPlayQuestion extends AppCompatActivity {
         wordQuestAnswered = true; // question has been answered
 
         countDownTimer.cancel(); // stop the timer once the answer has been locked in
+
+        switch (level){
+            case 1:
+                wordGameTime += (CountDown_In_Millis_Lev_1 - timeLeftInMillis);
+                break;
+            case 2:
+                wordGameTime += (CountDown_In_Millis_Lev_2 - timeLeftInMillis);
+                break;
+            case 3:
+                wordGameTime += (CountDown_In_Millis_Lev_3 - timeLeftInMillis);
+                break;
+        }
+
 
         RadioButton rbSelected = findViewById(rbGroupWordPlay.getCheckedRadioButtonId());
         int ansNumSelect = rbGroupWordPlay.indexOfChild(rbSelected) + 1; // add 1 since starts at 0
@@ -291,6 +331,10 @@ public class WordPlayQuestion extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), GameOver.class);
         intent.putExtra("wScoreExists", 1);
         intent.putExtra("gameScoreW", scoreWordPlay);
+
+        //intent.putExtra("totalTimeW",wordGameTime);
+        /** put the user name and time on the table here*/
+
         startActivity(intent);
         finish();
     }
