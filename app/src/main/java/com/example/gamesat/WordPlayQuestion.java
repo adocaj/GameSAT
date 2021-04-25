@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 
@@ -27,6 +29,10 @@ public class WordPlayQuestion extends AppCompatActivity {
     Button buttonBackWordPlay, buttonWordPlayExit;
 
     private final int DarkGreen = 0xFF006400; // FF is for transparency, rest is rgb
+
+    //----------------------------------------------------
+    // countdown variables
+    private static final long Countdown_In_Millis = 30000;
 
     //------------------------------------------------------
 
@@ -43,6 +49,10 @@ public class WordPlayQuestion extends AppCompatActivity {
     private List<WordQuestion> wordQuestionListLev1; // question outcome color
 
     private ColorStateList textClrDefaultRb;
+    private ColorStateList colorDefaultWCd; // countdown color default
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
 
     private WordQuestion currentWQ;//current word question
     private int scoreWordPlay = 3;
@@ -78,8 +88,9 @@ public class WordPlayQuestion extends AppCompatActivity {
         rbWordPlay2 = findViewById(R.id.rbWordPlay2);
         rbWordPlay3 = findViewById(R.id.rbWordPlay3);
         bConfirmWordPlay = findViewById(R.id.bConfirmWordPlay);
-
+        //-----------------------------------------------------------
         textClrDefaultRb = rbWordPlay1.getTextColors();
+        colorDefaultWCd = textViewWordCountDown.getTextColors();
         //--------------------------------------------------------------------
 
         GameDbHelper dbHelper = new GameDbHelper(this);
@@ -161,8 +172,50 @@ public class WordPlayQuestion extends AppCompatActivity {
             wordQuestAnswered = false;
             bConfirmWordPlay.setText("Confirm");
 
+            //------------------------ set the timer
+            timeLeftInMillis = Countdown_In_Millis;
+            startCountDown();
+
         } else { // score reaches 0 or 30, or no more questions
             finishWordPlay();
+        }
+    }
+
+    //***************************************************
+    private void startCountDown(){
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                timeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis = 0;
+                updateCountDownText();
+                checkWPAnswer(); // so we don't lose the answer chosen
+            }
+        }.start();
+    }
+
+    //************************************************
+
+    private void updateCountDownText(){
+
+        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60; // seconds left after minutes has been extracted
+
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        textViewWordCountDown.setText(timeFormatted);
+
+        if (timeLeftInMillis < 5000){ // change color if less than 5 seconds
+            textViewWordCountDown.setTextColor(Color.RED);
+        }else {
+            textViewWordCountDown.setTextColor(colorDefaultWCd);
         }
     }
 
@@ -184,6 +237,9 @@ public class WordPlayQuestion extends AppCompatActivity {
     //******************************************************************
     private void checkWPAnswer(){ // check word play answer
         wordQuestAnswered = true; // question has been answered
+
+        countDownTimer.cancel(); // stop the timer once the answer has been locked in
+
         RadioButton rbSelected = findViewById(rbGroupWordPlay.getCheckedRadioButtonId());
         int ansNumSelect = rbGroupWordPlay.indexOfChild(rbSelected) + 1; // add 1 since starts at 0
 
@@ -233,10 +289,18 @@ public class WordPlayQuestion extends AppCompatActivity {
     private void finishWordPlay() { // could be an advanced to level 2
         // for now go to welcome screen
         Intent intent = new Intent(getApplicationContext(), GameOver.class);
+        intent.putExtra("wScoreExists", 1);
+        intent.putExtra("gameScoreW", scoreWordPlay);
         startActivity(intent);
         finish();
     }
 
+    protected void onDestroy(){
+        super.onDestroy();
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
+    }
 
 
 
