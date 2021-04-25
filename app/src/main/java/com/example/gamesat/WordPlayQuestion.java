@@ -2,6 +2,7 @@ package com.example.gamesat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 
 /*
@@ -23,6 +25,8 @@ import java.util.List;
 public class WordPlayQuestion extends AppCompatActivity {
 
     Button buttonBackWordPlay, buttonWordPlayExit;
+
+    private final int DarkGreen = 0xFF006400; // FF is for transparency, rest is rgb
 
     //------------------------------------------------------
 
@@ -41,13 +45,14 @@ public class WordPlayQuestion extends AppCompatActivity {
     private ColorStateList textClrDefaultRb;
 
     private WordQuestion currentWQ;//current word question
-    private int scoreWordPlay = 5;
+    private int scoreWordPlay = 3;
     private int minScore = 0;
-    private int maxScore = 30;
+    private int maxScore = 5;
 
     private boolean wordQuestAnswered; // what happens when button is clicked
-    private int questCountTotalLev1;
-    private int questCounter = 0; // index starts at 0
+    private int wordQCountLev1; // word questions count level 1
+    private int questIndex = 0; // index starts at 0
+    private int prevIndex = 0;
     private String userName_;
 
     //-----------------------------------------------------
@@ -82,7 +87,7 @@ public class WordPlayQuestion extends AppCompatActivity {
         dbHelper.fillWordQuestTable();
         wordQuestionListLev1 = dbHelper.getAllWordQuestions(1); // create db and store all questions on list
 
-        questCountTotalLev1 = wordQuestionListLev1.size(); // total number of questions
+        wordQCountLev1 = wordQuestionListLev1.size(); // total number of questions
         Collections.shuffle(wordQuestionListLev1);
 
         showNextWordPlayQuestion();
@@ -133,23 +138,26 @@ public class WordPlayQuestion extends AppCompatActivity {
         rbWordPlay2.setTextColor(textClrDefaultRb);
         rbWordPlay3.setTextColor(textClrDefaultRb);
         rbGroupWordPlay.clearCheck();
-        //questCounter = 1;
 
-        // if we still have questions, and the score is not 0 or 30
-        if (questCounter < questCountTotalLev1 && scoreWordPlay != minScore &&
-                scoreWordPlay != maxScore){
-            currentWQ = wordQuestionListLev1.get(questCounter);
+        //--- find question index
+        questIndex = findQuestIndex();
+
+        // if we the score is not 0 or 30
+        if (scoreWordPlay != minScore && scoreWordPlay != maxScore){
+
+            currentWQ = wordQuestionListLev1.get(questIndex); // get word question
 
             textViewWordQuestion.setText(currentWQ.getQuestion()); // display the question
             rbWordPlay1.setText(currentWQ.getOption1());
             rbWordPlay2.setText(currentWQ.getOption2());
             rbWordPlay3.setText(currentWQ.getOption3());
 
-            //textViewWordLevel.setText("Level: " + currentWQ.getLevel());
-            textViewWordLevel.setText(userName_);
+            //***********|||||||||||||||||||||||***************************
+            textViewWordLevel.setText("Level: " + currentWQ.getLevel());
+            //textViewWordLevel.setText(userName_);
+            //textViewWordLevel.setText("Index: " + questIndex);
             textViewWordScore.setText("Score: " + scoreWordPlay);
 
-            questCounter += 1;
             wordQuestAnswered = false;
             bConfirmWordPlay.setText("Confirm");
 
@@ -158,8 +166,23 @@ public class WordPlayQuestion extends AppCompatActivity {
         }
     }
 
+
+    //**************************************************
+    private int findQuestIndex() {
+        Random random = new Random();
+
+        int randomIndex = random.nextInt(wordQCountLev1);
+
+        while (prevIndex == randomIndex) { // next quest is different from previous one
+            randomIndex = random.nextInt(wordQCountLev1);
+        }
+        prevIndex = randomIndex;
+
+        return randomIndex;
+    }
+
     //******************************************************************
-    private void checkWPAnswer(){ // chech word play answer
+    private void checkWPAnswer(){ // check word play answer
         wordQuestAnswered = true; // question has been answered
         RadioButton rbSelected = findViewById(rbGroupWordPlay.getCheckedRadioButtonId());
         int ansNumSelect = rbGroupWordPlay.indexOfChild(rbSelected) + 1; // add 1 since starts at 0
@@ -168,10 +191,10 @@ public class WordPlayQuestion extends AppCompatActivity {
 
             // increase score
             scoreWordPlay += 1;
-            textViewWordScore.setText("Score: " + scoreWordPlay); // display new score
+
+
         } else {
             scoreWordPlay -= 1; // decease score
-            textViewWordScore.setText("Score: " + textViewWordScore);
         }
 
         // show solution regardless
@@ -186,20 +209,20 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         switch (currentWQ.getAnswerNr()){
             case 1:
-                rbWordPlay1.setTextColor(Color.WHITE);
+                rbWordPlay1.setTextColor(DarkGreen);
                 rbWordPlay1.setText(currentWQ.getOption1() + " is correct.");
                 break;
             case 2:
-                rbWordPlay2.setTextColor(Color.WHITE);
+                rbWordPlay2.setTextColor(DarkGreen);
                 rbWordPlay2.setText(currentWQ.getOption2() + " is correct.");
                 break;
             case 3:
-                rbWordPlay3.setTextColor(Color.WHITE);
+                rbWordPlay3.setTextColor(DarkGreen);
                 rbWordPlay3.setText(currentWQ.getOption3() + " is correct.");
                 break;
         }
 
-        if (questCounter < questCountTotalLev1){
+        if (scoreWordPlay != minScore && scoreWordPlay != maxScore){
             bConfirmWordPlay.setText("Next");
         } else {
             bConfirmWordPlay.setText("Finish");
@@ -209,7 +232,7 @@ public class WordPlayQuestion extends AppCompatActivity {
     //******************************************************************
     private void finishWordPlay() { // could be an advanced to level 2
         // for now go to welcome screen
-        Intent intent = new Intent(getApplicationContext(), Welcome.class);
+        Intent intent = new Intent(getApplicationContext(), GameOver.class);
         startActivity(intent);
         finish();
     }

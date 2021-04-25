@@ -25,4 +25,6 @@
     <string name="skip">Skip Question</string>
     <string name="bestScoreWord">Word Leader Board</string>
     <string name="bestScorePassage">Passage Leader Board</string>
+    <string name="gameOver">Game Over.</string>
+    <string name="youWin">Congratulations! You Won.</string>
 </resources>
