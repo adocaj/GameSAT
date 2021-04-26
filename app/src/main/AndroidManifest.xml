@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GameSAT"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LeaderBoard"></activity>
+        <activity
+            android:name=".LeaderBoard"
+            android:theme="@style/Theme.Design.Light.NoActionBar"/>
         <activity
             android:name=".GameOver"
             android:theme="@style/Theme.Design.Light.NoActionBar" />

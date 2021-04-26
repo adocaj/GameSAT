@@ -35,8 +35,8 @@ public final class GameContract {
 
     public static class UsersWordCompletionTimeTable implements BaseColumns {
         public static final String TABLE_NAME = "word_user_times";
-        public static final String COLUMN_USERNAME = "username";
-        public static final String COLUMN_TIME = "time";
+        public static final String COLUMN_USERNAME = "username"; //we want to record usernames and
+        public static final String COLUMN_TIME = "time"; // their completion time.
     }
 
     public static class UsersPassageCompletionTimeTable implements BaseColumns {

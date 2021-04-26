@@ -58,7 +58,21 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         // create table of users and their completion times
 
+        final String SQL_CREATE_WORD_USERNAME_TIME_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                UsersWordCompletionTimeTable.TABLE_NAME + " ( " +
+                UsersWordCompletionTimeTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                UsersWordCompletionTimeTable.COLUMN_USERNAME + " TEXT, " +
+                UsersWordCompletionTimeTable.COLUMN_TIME + " INTEGER" +
+                " ) ";
+        //*** Time will be stored as an integer and retrieved as a long.
 
+        db.execSQL(SQL_CREATE_WORD_USERNAME_TIME_TABLE); // create the username time table
+
+        // create a unique index for the table to avoid duplicate usernames and times
+        final String SQL_CREATE_WORD_USERNAME_TIME_INDEX = "CREATE UNIQUE INDEX IF NOT EXISTS " +
+                "username_time_word_index ON " +  UsersWordCompletionTimeTable.TABLE_NAME + "(" + UsersWordCompletionTimeTable.COLUMN_USERNAME
+                + "," + UsersWordCompletionTimeTable.COLUMN_TIME + ")";
+        db.execSQL(SQL_CREATE_WORD_USERNAME_TIME_INDEX); // we don't want same user, same time to be entered repeatedly
 
 
         //----------------------------------------------------------------------
@@ -69,7 +83,9 @@ public class GameDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        db.execSQL("DROP TABLE IF EXISTS " + WordQuestionsTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + WordQuestionsTable.TABLE_NAME); // drop word questions table
+
+        db.execSQL("DROP TABLE IF EXISTS " + UsersWordCompletionTimeTable.TABLE_NAME); // drop username time table
 
         onCreate(db);
     }
@@ -80,33 +96,60 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
     public void fillWordQuestTable(){
 
-        WordQuestion wq1 = new WordQuestion("Aberration is closest in meaning to:", "anomaly", "remote", "desist", 1, 1);
-        addWordQuestion(wq1);
+        //---------------------- Level 1 -------------------------------------------------
 
-        WordQuestion wq2 = new WordQuestion("Abreast is closest in meaning to:", "uncertain", "informed", "above", 2, 1);
-        addWordQuestion(wq2);
+        addWordQuestion("Aberration", "anomaly", "remote", "desist", 1, 1);
 
-        WordQuestion wq3 = new WordQuestion("Abstain is closest in meaning to:", "entice", "refrain", "abhor", 2, 1);
-        addWordQuestion(wq3);
+        addWordQuestion("Abreast", "uncertain", "informed", "above", 2, 1);
 
-        WordQuestion wq4 = new WordQuestion("Abyss is closest in meaning to:", "attract", "entice", "void", 3, 1);
-        addWordQuestion(wq4);
+        addWordQuestion("Abstain", "entice", "refrain", "abhor", 2, 1);
 
-        WordQuestion wq5 = new WordQuestion("Adept is closest in meaning to:", "proficient", "uncertain", "adorn", 1, 1);
-        addWordQuestion(wq5);
+        addWordQuestion("Abyss", "attract", "entice", "void", 3, 1);
+
+        addWordQuestion("Adept", "proficient", "uncertain", "adorn", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //---------------------- Level 2 -------------------------------------------------
+
+        addWordQuestion("Abasement", "anomaly", "belittlement", "aggravate", 2,2);
+
+        addWordQuestion("Abate", "subside", "adorn", "stray", 1,2);
+
+        addWordQuestion("Accession", "acumen", "combustion", "joining",3,2);
+
+        addWordQuestion("Acerbic", "caustic", "edible", "dullard", 1, 2);
+
+        addWordQuestion("Acolyte", "cryptic", "assistant", "euphoria", 2, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //---------------------- Level 3 -------------------------------------------------
+
+        addWordQuestion("Abeyance", "anomaly", "remission", "chisel", 2,3);
+
+        addWordQuestion("Abjure", "reject", "adorn", "stray", 1,3);
+
+        addWordQuestion("Anodyne", "acumen", "combustion", "inoffensive",3,3);
+
+        addWordQuestion("Bilk", "swindle", "gallant", "dullard", 1, 3);
+
+        addWordQuestion("Canard", "cryptic", "gossip", "shard", 2, 3);
 
     }
 
 
-    private void addWordQuestion(WordQuestion question){
+    private void addWordQuestion(String word, String opt1, String opt2, String opt3, int ansNr, int level){
+
+        WordQuestion wordQuestion = new WordQuestion(word + " is closest in meaning to:", opt1, opt2, opt3, ansNr, level);
 
         ContentValues cv = new ContentValues();
-        cv.put(WordQuestionsTable.COLUMN_QUESTION, question.getQuestion());
-        cv.put(WordQuestionsTable.COLUMN_OPTION1, question.getOption1());
-        cv.put(WordQuestionsTable.COLUMN_OPTION2, question.getOption2());
-        cv.put(WordQuestionsTable.COLUMN_OPTION3, question.getOption3());
-        cv.put(WordQuestionsTable.COLUMN_ANSWER_NR, question.getAnswerNr());
-        cv.put(WordQuestionsTable.COLUMN_LEVEL, question.getLevel());
+        cv.put(WordQuestionsTable.COLUMN_QUESTION, wordQuestion.getQuestion());
+        cv.put(WordQuestionsTable.COLUMN_OPTION1, wordQuestion.getOption1());
+        cv.put(WordQuestionsTable.COLUMN_OPTION2, wordQuestion.getOption2());
+        cv.put(WordQuestionsTable.COLUMN_OPTION3, wordQuestion.getOption3());
+        cv.put(WordQuestionsTable.COLUMN_ANSWER_NR, wordQuestion.getAnswerNr());
+        cv.put(WordQuestionsTable.COLUMN_LEVEL, wordQuestion.getLevel());
 
         // now we add the question to the database db
         this.getWritableDatabase().insertWithOnConflict(WordQuestionsTable.TABLE_NAME,null, cv,SQLiteDatabase.CONFLICT_IGNORE);
