@@ -24,7 +24,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewBackGameOver"
+        android:id="@+id/cardViewBackLeaderBoard"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="512dp"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonBackGameOver"
+            android:id="@+id/buttonBackLeaderBoard"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -51,7 +51,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewGameOverExit"
+        android:id="@+id/cardViewExitLeaderBoard"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="28dp"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonExitGameOver"
+            android:id="@+id/buttonExitLeaderBoard"
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:layout_gravity="center"

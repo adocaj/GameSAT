@@ -25,8 +25,8 @@ public class GameOver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 
-        buttonBackGameOver = (Button) findViewById(R.id.buttonBackGameOver);
-        buttonExitGameOver = (Button) findViewById(R.id.buttonExitGameOver);
+        buttonBackGameOver = findViewById(R.id.buttonBackGameOver);
+        buttonExitGameOver = findViewById(R.id.buttonExitGameOver);
         textViewGameOver = findViewById(R.id.textViewGameOver);
 
         wordScoreExists = getIntent().getIntExtra("wScoreExists", 0);
@@ -45,7 +45,7 @@ public class GameOver extends AppCompatActivity {
         buttonBackGameOver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Welcome.class); // go to welcome screen
+                Intent intent = new Intent(getApplicationContext(), PlayScreen.class); // go to play screen
                 startActivity(intent);
                 finish();
             }

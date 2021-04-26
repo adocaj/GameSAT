@@ -6,15 +6,25 @@
     android:layout_margin="8dp">
 
     <TextView
+        android:id="@+id/textView_ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_black"
+        android:text="1"
+        android:textSize="30sp" />
+
+    <TextView
         android:id="@+id/textViewUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_black"
         android:text="@string/username"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"/>
 
     <TextView
-        android:id="@+id/textViewUserNameTime"
+        android:id="@+id/textViewTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/time"

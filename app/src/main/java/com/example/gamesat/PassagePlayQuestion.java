@@ -22,7 +22,7 @@ public class PassagePlayQuestion extends AppCompatActivity {
         buttonBackPassPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Welcome.class);
+                Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
                 startActivity(intent);
                 finish();
             }

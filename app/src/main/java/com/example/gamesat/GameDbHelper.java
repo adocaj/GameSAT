@@ -138,10 +138,10 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
     }
 
-
+    //***********************************************************************************************************
     private void addWordQuestion(String word, String opt1, String opt2, String opt3, int ansNr, int level){
 
-        WordQuestion wordQuestion = new WordQuestion(word + " is closest in meaning to:", opt1, opt2, opt3, ansNr, level);
+        Question wordQuestion = new Question(word + " is closest in meaning to:", opt1, opt2, opt3, ansNr, level);
 
         ContentValues cv = new ContentValues();
         cv.put(WordQuestionsTable.COLUMN_QUESTION, wordQuestion.getQuestion());
@@ -156,15 +156,16 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
     }
 
-    public List<WordQuestion> getAllWordQuestions(int level){
-        List<WordQuestion> wordQuestionList = new ArrayList<>();
+    //************************************************************************************************
+    public List<Question> getAllWordQuestions(int level){
+        List<Question> wordQuestionList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + WordQuestionsTable.TABLE_NAME, null);
 
         if (cursor.moveToFirst()){
             do {
-                WordQuestion question = new WordQuestion();
+                Question question = new Question();
                 question.setQuestion(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_QUESTION)));
                 question.setOption1(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION2)));
@@ -179,6 +180,10 @@ public class GameDbHelper extends SQLiteOpenHelper {
         cursor.close();
         return wordQuestionList;
     }
-    //*********************************************************************************************************************8
+    //*********************************************************************************************************************
+
+
+
+    //*****************************************************************************************
 
 }

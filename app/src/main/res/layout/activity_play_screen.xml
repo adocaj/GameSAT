@@ -86,7 +86,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/buttonWordBestScore"
+            android:id="@+id/bWordLeaderBoard"
             android:layout_width="194dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -115,7 +115,7 @@
         app:layout_constraintTop_toTopOf="@id/cardViewWordBestScore">
 
         <Button
-            android:id="@+id/buttonPassBestScore"
+            android:id="@+id/bPassLeaderBoard"
             android:layout_width="194dp"
             android:layout_height="50dp"
             android:layout_gravity="center"

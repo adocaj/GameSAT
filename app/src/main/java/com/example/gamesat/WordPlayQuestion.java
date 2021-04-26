@@ -2,7 +2,6 @@ package com.example.gamesat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -48,7 +47,7 @@ public class WordPlayQuestion extends AppCompatActivity {
     private RadioButton rbWordPlay3;
     private Button bConfirmWordPlay;
 
-    private List<WordQuestion> wordQuestionList; // question outcome color
+    private List<Question> wordQuestionList; // question outcome color
 
     private ColorStateList textClrDefaultRb;
     private ColorStateList colorDefaultWCd; // countdown color default
@@ -56,7 +55,7 @@ public class WordPlayQuestion extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
 
-    private WordQuestion currentWQ;//current word question
+    private Question currentWQ;//current word question
     private int wordPlayScore = 3;
     private int minScore = 0;
     private int maxScore = 15;
@@ -133,7 +132,7 @@ public class WordPlayQuestion extends AppCompatActivity {
         buttonBackWordPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Welcome.class);
+                Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
                 startActivity(intent);
                 finish();
             }
@@ -299,7 +298,7 @@ public class WordPlayQuestion extends AppCompatActivity {
 
 
         } else {
-            wordPlayScore -= 1; // decease score
+            wordPlayScore -= 1; // decrease score
         }
 
         // show solution regardless

@@ -12,6 +12,7 @@ import android.widget.Button;
 public class PlayScreen extends AppCompatActivity {
 
     Button buttonBackPlay, buttonPlayWord, buttonPlayPassage, buttonPlayExit;
+    Button bWordLeaderBoard, bPassLeaderBoard;
 
 
     @Override
@@ -19,10 +20,13 @@ public class PlayScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_screen);
 
-        buttonBackPlay = (Button) findViewById(R.id.buttonBackPlay);
-        buttonPlayWord = (Button) findViewById(R.id.buttonPlayWord);
-        buttonPlayPassage = (Button) findViewById(R.id.buttonPlayPassage);
-        buttonPlayExit = (Button) findViewById(R.id.buttonPlayExit);
+        buttonBackPlay = findViewById(R.id.buttonBackPlay);
+        buttonPlayWord = findViewById(R.id.buttonPlayWord);
+        buttonPlayPassage = findViewById(R.id.buttonPlayPassage);
+        buttonPlayExit = findViewById(R.id.buttonPlayExit);
+
+        bWordLeaderBoard = findViewById(R.id.bWordLeaderBoard);
+        bPassLeaderBoard = findViewById(R.id.bPassLeaderBoard);
 
         String usernameP = getIntent().getStringExtra("usernamePlay");
 
@@ -51,7 +55,7 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),PassagePlayQuestion.class);
-                intent.putExtra("usernameWT", usernameP);
+                intent.putExtra("usernamePP", usernameP); // we need to record user's performance
                 startActivity(intent);
                 finish();
             }
@@ -67,6 +71,34 @@ public class PlayScreen extends AppCompatActivity {
 
 
     //------------------------------------------------------------------------------
+
+        bWordLeaderBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LeaderBoard.class); // go to leaderboard
+                intent.putExtra("wordBoardSelect", 1);
+
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+    //-------------------------------------------------------------------
+
+        bPassLeaderBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LeaderBoard.class);
+                intent.putExtra("passBoardSelect", 1);
+
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    //--------------------------------------------------------------
+
 
     }
 }
