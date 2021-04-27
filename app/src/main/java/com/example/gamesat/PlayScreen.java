@@ -15,7 +15,6 @@ public class PlayScreen extends AppCompatActivity {
     Button buttonBackPlay, buttonPlayWord, buttonPlayPassage, buttonPlayExit;
     Button bWordLeaderBoard, bPassLeaderBoard;
 
-    String username;
 
     GameDbHelper gameDbHelper;
 
@@ -35,7 +34,6 @@ public class PlayScreen extends AppCompatActivity {
 
         gameDbHelper = new GameDbHelper(this);
 
-        username = gameDbHelper.getUserName();
 
     //----------------------------------------------------------------------------------
         buttonBackPlay.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +67,6 @@ public class PlayScreen extends AppCompatActivity {
         buttonPlayExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameDbHelper.deleteUserLogin(username);
                 finishAffinity();
                 System.exit(0);
             }

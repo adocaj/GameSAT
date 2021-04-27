@@ -53,7 +53,6 @@ public class Welcome extends AppCompatActivity {
         buttonExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
                 finishAffinity();
                 System.exit(0);
             }

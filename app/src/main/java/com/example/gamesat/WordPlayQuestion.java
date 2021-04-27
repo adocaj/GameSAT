@@ -66,7 +66,6 @@ public class WordPlayQuestion extends AppCompatActivity {
 
     private int questIndex = 0; // index starts at 0
     private int prevIndex = 0;
-    private String userName_;
     private long wordGameTime = 0L;
 
     GameDbHelper dbHelper;
@@ -99,9 +98,6 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         dbHelper = new GameDbHelper(this);
 
-        //--------------||||-------
-        userName_ = dbHelper.getUserName();
-        //--------------------------------------------------------------------
 
         dbHelper.fillWordQuestTable(); // populate the word table with questions
 
@@ -144,7 +140,6 @@ public class WordPlayQuestion extends AppCompatActivity {
         buttonWordPlayExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbHelper.deleteUserLogin(userName_);
                 finishAffinity();
                 System.exit(0);
             }
@@ -278,7 +273,7 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         countDownTimer.cancel(); // stop the timer once the answer has been locked in
 
-        switch (level){
+        switch (level){ // compute how long the user takes to complete the game
             case 1:
                 wordGameTime += (CountDown_In_Millis_Lev_1 - timeLeftInMillis);
                 break;
@@ -337,13 +332,13 @@ public class WordPlayQuestion extends AppCompatActivity {
     }
 
     //******************************************************************
-    private void finishWordPlay() { // could be an advanced to level 2
+    private void finishWordPlay() {
         // for now go to welcome screen
         Intent intent = new Intent(getApplicationContext(), GameOver.class);
         intent.putExtra("wScoreExists", 1);
         intent.putExtra("gameScoreW", wordPlayScore);
 
-        /** put the user name and time on the table here*/
+        intent.putExtra("gameTimeW", String.valueOf(wordGameTime));
 
         startActivity(intent);
         finish();

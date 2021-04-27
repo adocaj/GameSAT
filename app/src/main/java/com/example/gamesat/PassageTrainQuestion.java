@@ -36,7 +36,6 @@ public class PassageTrainQuestion extends AppCompatActivity {
         buttonPassTrainExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
                 finishAffinity();
                 System.exit(0);
             }

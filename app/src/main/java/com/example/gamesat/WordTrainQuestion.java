@@ -36,7 +36,6 @@ public class WordTrainQuestion extends AppCompatActivity {
         buttonWordTrainExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
                 finishAffinity();
                 System.exit(0);
             }
