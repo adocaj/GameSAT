@@ -45,4 +45,10 @@ public final class GameContract {
         public static final String COLUMN_TIME = "time";
     }
 
+    public static class UserLoginDataTable implements BaseColumns {
+        public static final String  TABLE_NAME = "login_data";
+        public static final String COLUMN_USERNAME = "username";
+        public static final String COLUMN_PASSWORD ="password";
+    }
+
 }

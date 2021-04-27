@@ -19,19 +19,36 @@ import java.util.List;
 public class GameDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "GameSat.db";
-    //private static final String DATABASE_NAME = "TEST1.db";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 10; /**  Reset the database num for new tables*/
 
 
     public GameDbHelper(Context context) {
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        context.deleteDatabase("TEST1.db");
-        context.deleteDatabase("TEST.db");
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        //-------------------------------------------------------------------------
+        // create table of login data
+        final String SQL_CREATE_LOGIN_DATA_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                UserLoginDataTable.TABLE_NAME + " ( " +
+                UserLoginDataTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                UserLoginDataTable.COLUMN_USERNAME + " TEXT, " +
+                UserLoginDataTable.COLUMN_PASSWORD + " TEXT" +
+                " ) ";
+
+        db.execSQL(SQL_CREATE_LOGIN_DATA_TABLE); // create the login data table
+
+        // create a unique index for the table to avoid duplicate username and passwords
+        final String SQL_CREATE_LOGIN_DATA_INDEX = "CREATE UNIQUE INDEX IF NOT EXISTS " +
+                "login_data_index ON " +  UserLoginDataTable.TABLE_NAME + "(" + UserLoginDataTable.COLUMN_USERNAME
+                + "," + UserLoginDataTable.COLUMN_PASSWORD + ")";
+        db.execSQL(SQL_CREATE_LOGIN_DATA_INDEX); // we don't want same user, same password to be entered repeatedly
+
+
+        //----------------------------------------------------------------------
 
         //------------------------------------------
         // create word questions table
@@ -68,7 +85,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_WORD_USERNAME_TIME_TABLE); // create the username time table
 
-        // create a unique index for the table to avoid duplicate usernames and times
+        // create a unique index for the table to avoid duplicate username and times
         final String SQL_CREATE_WORD_USERNAME_TIME_INDEX = "CREATE UNIQUE INDEX IF NOT EXISTS " +
                 "username_time_word_index ON " +  UsersWordCompletionTimeTable.TABLE_NAME + "(" + UsersWordCompletionTimeTable.COLUMN_USERNAME
                 + "," + UsersWordCompletionTimeTable.COLUMN_TIME + ")";
@@ -86,6 +103,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + WordQuestionsTable.TABLE_NAME); // drop word questions table
 
         db.execSQL("DROP TABLE IF EXISTS " + UsersWordCompletionTimeTable.TABLE_NAME); // drop username time table
+
+        db.execSQL("DROP TABLE IF EXISTS " + UserLoginDataTable.TABLE_NAME); // drop username time table
 
         onCreate(db);
     }
@@ -182,6 +201,38 @@ public class GameDbHelper extends SQLiteOpenHelper {
     }
     //*********************************************************************************************************************
 
+    // insert user data into the login database
+
+    //***********************************************************************************************************
+    public void insertUserLogin(String username, String password){
+
+
+        ContentValues cv = new ContentValues();
+        cv.put(UserLoginDataTable.COLUMN_USERNAME, username);
+        cv.put(UserLoginDataTable.COLUMN_PASSWORD, password);
+
+        // now we add the question to the database db
+        this.getWritableDatabase().insertWithOnConflict(UserLoginDataTable.TABLE_NAME,null, cv, SQLiteDatabase.CONFLICT_IGNORE);
+
+    }
+    //*****************************************
+
+    public void deleteUserLogin(String username){
+        this.getWritableDatabase().delete(UserLoginDataTable.TABLE_NAME, UserLoginDataTable.COLUMN_USERNAME + " = " + username, null);
+    }
+
+    //******************************************************************
+
+    public String getUserName(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + UserLoginDataTable.TABLE_NAME, null);
+
+        if (cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(UserLoginDataTable.COLUMN_USERNAME));
+        }
+        return "";
+    }
 
 
     //*****************************************************************************************

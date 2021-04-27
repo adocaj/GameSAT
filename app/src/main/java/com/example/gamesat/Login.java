@@ -2,10 +2,13 @@ package com.example.gamesat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +24,10 @@ public class Login extends AppCompatActivity {
     Button buttonLogin, buttonLoginExit;
     TextView textViewSignUp;
 
+    String username, password;
+    GameDbHelper gameDbHelper;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +39,9 @@ public class Login extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
         textViewSignUp = findViewById(R.id.signUpText);
         buttonLoginExit = (Button) findViewById(R.id.buttonLoginExit);
+
+        gameDbHelper = new GameDbHelper(this);
+
 
     //-------------------------------------------------------------------------------
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +58,6 @@ public class Login extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                String username, password;
 
                 username = String.valueOf(usernameLoginInput.getText());
                 password = String.valueOf(passwordLoginInput.getText());
@@ -79,9 +86,13 @@ public class Login extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), Welcome.class); // move to the welcome screen
-                                        intent.putExtra("usernameWelcome",username); // pass the username info
+
+                                        //intent.putExtra("userN", username);
+                                        //intent.putExtra("passW", password);
+                                        gameDbHelper.insertUserLogin(username, password);
+
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
-                                        finish();
 
                                     } else {
 
@@ -105,11 +116,13 @@ public class Login extends AppCompatActivity {
         buttonLoginExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                finishAffinity();
                 System.exit(0);
             }
         });
     //-------------------------------------------------------------------------------------------------------
 
     }
+
+
 }
