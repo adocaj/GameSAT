@@ -12,6 +12,7 @@ import android.widget.Button;
 public class Welcome extends AppCompatActivity {
 
     Button buttonPlay, buttonTrain, buttonExit;
+    GameDbHelper gameDbHelper;
 
 
     @Override
@@ -26,7 +27,7 @@ public class Welcome extends AppCompatActivity {
         buttonExit = (Button) findViewById(R.id.buttonExit);
 
         // username info ---||||----
-        String usernameW = getIntent().getStringExtra("usernameWelcome");
+        gameDbHelper = new GameDbHelper(this);
 
     //--------------------------------------------------------------------------------
         buttonTrain.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +35,6 @@ public class Welcome extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), TrainScreen.class);
-                intent.putExtra("usernameTrain", usernameW);
                 startActivity(intent);
                 finish();
             }
@@ -45,7 +45,6 @@ public class Welcome extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
-                intent.putExtra("usernamePlay", usernameW);
                 startActivity(intent);
                 finish();
             }
@@ -54,7 +53,8 @@ public class Welcome extends AppCompatActivity {
         buttonExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
+                finishAffinity();
                 System.exit(0);
             }
         });

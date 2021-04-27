@@ -18,7 +18,8 @@ public class GameOver extends AppCompatActivity {
     private int passScoreExists;
     private TextView textViewGameOver;
 
-    //private long totalTime;
+    GameDbHelper gameDbHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +30,13 @@ public class GameOver extends AppCompatActivity {
         buttonExitGameOver = findViewById(R.id.buttonExitGameOver);
         textViewGameOver = findViewById(R.id.textViewGameOver);
 
+        gameDbHelper = new GameDbHelper(this);
+
         wordScoreExists = getIntent().getIntExtra("wScoreExists", 0);
         passScoreExists = getIntent().getIntExtra("pScoreExists", 0);
 
         if (wordScoreExists > 0){
             gameScore = getIntent().getIntExtra("gameScoreW",0); // either get a word score
-            //totalTime = getIntent().getLongExtra("totalTimeW",0);
         } else {
             gameScore = getIntent().getIntExtra("gameScoreP", 0); // or a passage score
         }
@@ -54,7 +56,8 @@ public class GameOver extends AppCompatActivity {
         buttonExitGameOver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
+                finishAffinity();
                 System.exit(0);
             }
         });
@@ -66,7 +69,6 @@ public class GameOver extends AppCompatActivity {
         } else {
 
             textViewGameOver.setText("Congratulations! You won.");
-            //textViewGameOver.setText("Time: " + totalTime);
         }
     }
 

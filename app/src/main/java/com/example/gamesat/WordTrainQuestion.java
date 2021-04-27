@@ -10,6 +10,7 @@ import android.widget.Button;
 public class WordTrainQuestion extends AppCompatActivity {
 
     Button buttonBackWordTrain, buttonWordTrainExit;
+    GameDbHelper gameDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,8 @@ public class WordTrainQuestion extends AppCompatActivity {
 
         buttonBackWordTrain = (Button) findViewById(R.id.buttonBackWordTrain);
         buttonWordTrainExit = (Button) findViewById(R.id.buttonWordTrainExit);
+
+        gameDbHelper = new GameDbHelper(this);
     //--------------------------------------------------------------------------------
         buttonBackWordTrain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,7 +36,8 @@ public class WordTrainQuestion extends AppCompatActivity {
         buttonWordTrainExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
+                finishAffinity();
                 System.exit(0);
             }
         });

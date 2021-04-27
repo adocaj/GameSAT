@@ -11,6 +11,7 @@ public class LeaderBoard extends AppCompatActivity {
 
     Button buttonExitLeaderBoard, buttonBackLeaderBoard;
     private int wBoardSelect, pBoardSelect;
+    GameDbHelper gameDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,8 @@ public class LeaderBoard extends AppCompatActivity {
 
         wBoardSelect = getIntent().getIntExtra("wordBoardSelect", 0);
         pBoardSelect = getIntent().getIntExtra("passBoardSelect", 0);
+
+        gameDbHelper = new GameDbHelper(this);
 
         //-------------------------------------------------------
 
@@ -39,7 +42,8 @@ public class LeaderBoard extends AppCompatActivity {
         buttonExitLeaderBoard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
+                finishAffinity();
                 System.exit(0);
             }
         });

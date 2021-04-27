@@ -34,12 +34,8 @@ public class PlayScreen extends AppCompatActivity {
         bPassLeaderBoard = findViewById(R.id.bPassLeaderBoard);
 
         gameDbHelper = new GameDbHelper(this);
-        //usernameP = getIntent().getStringExtra("userN");
-        //passwordP = getIntent().getStringExtra("passW");
-        //gameDbHelper.insertUserLogin(usernameP,passwordP);
 
         username = gameDbHelper.getUserName();
-        buttonPlayPassage.setText(username);
 
     //----------------------------------------------------------------------------------
         buttonBackPlay.setOnClickListener(new View.OnClickListener() {
@@ -56,10 +52,8 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), WordPlayQuestion.class);
-                intent.putExtra("usernameWP", username);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
     //-------------------------------------------------------------------------------------
@@ -67,17 +61,15 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),PassagePlayQuestion.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("usernamePP", username); // we need to record user's performance
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
     //---------------------------------------------------------------------------------
         buttonPlayExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finish();
+                gameDbHelper.deleteUserLogin(username);
                 finishAffinity();
                 System.exit(0);
             }
@@ -90,11 +82,10 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LeaderBoard.class); // go to leaderboard
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("wordBoardSelect", 1);
 
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
 
@@ -105,11 +96,10 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LeaderBoard.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("passBoardSelect", 1);
 
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
 

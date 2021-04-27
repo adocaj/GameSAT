@@ -10,6 +10,7 @@ import android.widget.Button;
 public class PassagePlayQuestion extends AppCompatActivity {
 
     Button buttonBackPassPlay, buttonPassPlayExit;
+    GameDbHelper gameDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,8 @@ public class PassagePlayQuestion extends AppCompatActivity {
 
         buttonBackPassPlay = (Button) findViewById(R.id.buttonBackPassPlay);
         buttonPassPlayExit = (Button) findViewById(R.id.buttonPassPlayExit);
+
+        gameDbHelper = new GameDbHelper(this);
     //-----------------------------------------------------------------------------------
         buttonBackPassPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,7 +35,8 @@ public class PassagePlayQuestion extends AppCompatActivity {
         buttonPassPlayExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                gameDbHelper.deleteUserLogin(gameDbHelper.getUserName());
+                finishAffinity();
                 System.exit(0);
             }
         });

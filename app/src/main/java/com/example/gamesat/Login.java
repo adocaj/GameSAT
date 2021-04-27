@@ -87,12 +87,10 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(getApplicationContext(), Welcome.class); // move to the welcome screen
 
-                                        //intent.putExtra("userN", username);
-                                        //intent.putExtra("passW", password);
-                                        gameDbHelper.insertUserLogin(username, password);
+                                        gameDbHelper.insertUserLogin(username, password); // store user login data
 
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
+                                        finish();
 
                                     } else {
 
@@ -116,6 +114,7 @@ public class Login extends AppCompatActivity {
         buttonLoginExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gameDbHelper.deleteUserLogin(username);
                 finishAffinity();
                 System.exit(0);
             }

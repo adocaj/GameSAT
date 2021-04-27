@@ -81,9 +81,7 @@ public class WordPlayQuestion extends AppCompatActivity {
         buttonBackWordPlay = findViewById(R.id.buttonBackWordPlay);
         buttonWordPlayExit = findViewById(R.id.buttonWordPlayExit);
 
-        //--------------||||-------
-        userName_ = getIntent().getStringExtra("usernameWP");
-        //--------------------------------------------------------------------
+        //-----------------------------------------------------------------
 
         textViewWordQuestion = findViewById(R.id.textViewWordQuestion);
         textViewWordScore = findViewById(R.id.textViewWordScore);
@@ -101,7 +99,11 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         dbHelper = new GameDbHelper(this);
 
-        dbHelper.fillWordQuestTable();
+        //--------------||||-------
+        userName_ = dbHelper.getUserName();
+        //--------------------------------------------------------------------
+
+        dbHelper.fillWordQuestTable(); // populate the word table with questions
 
         setWordQuestionList(level);
 
@@ -133,9 +135,8 @@ public class WordPlayQuestion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
     //--------------------------------------------------------------------------------------
@@ -143,7 +144,7 @@ public class WordPlayQuestion extends AppCompatActivity {
         buttonWordPlayExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finish();
+                dbHelper.deleteUserLogin(userName_);
                 finishAffinity();
                 System.exit(0);
             }
@@ -187,8 +188,8 @@ public class WordPlayQuestion extends AppCompatActivity {
             rbWordPlay3.setText(currentWQ.getOption3());
 
             //***********|||||||||||||||||||||||***************************
-            //textViewWordLevel.setText("Level: " + currentWQ.getLevel());
-            textViewWordLevel.setText(userName_);
+            textViewWordLevel.setText("Level: " + currentWQ.getLevel());
+            //textViewWordLevel.setText(userName_);
             //textViewWordLevel.setText("TimeVar: " + wordGameTime);
             textViewWordScore.setText("Score: " + wordPlayScore);
 
@@ -342,7 +343,6 @@ public class WordPlayQuestion extends AppCompatActivity {
         intent.putExtra("wScoreExists", 1);
         intent.putExtra("gameScoreW", wordPlayScore);
 
-        //intent.putExtra("totalTimeW",wordGameTime);
         /** put the user name and time on the table here*/
 
         startActivity(intent);
