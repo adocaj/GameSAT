@@ -25,7 +25,7 @@ import java.util.Random;
  */
 public class WordPlayQuestion extends AppCompatActivity {
 
-    Button buttonBackWordPlay, buttonWordPlayExit;
+    Button buttonBackWordPlay, buttonWordPlayExit, bSkipWordPlay;
 
     private final int DarkGreen = 0xFF006400; // FF is for transparency, rest is rgb
 
@@ -79,6 +79,7 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         buttonBackWordPlay = findViewById(R.id.buttonBackWordPlay);
         buttonWordPlayExit = findViewById(R.id.buttonWordPlayExit);
+        bSkipWordPlay = findViewById(R.id.bSkipWordPlay); // skip question button
 
         //-----------------------------------------------------------------
 
@@ -126,6 +127,17 @@ public class WordPlayQuestion extends AppCompatActivity {
         });
 
         //---------------------------------------------------------------------
+
+        bSkipWordPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // find new index different from current and previous
+                prevIndex = questIndex;
+
+                countDownTimer.cancel(); // stop previous timer
+                showNextWordPlayQuestion(); // start anew
+            }
+        });
     //-----------------------------------------------------------------------------------
         buttonBackWordPlay.setOnClickListener(new View.OnClickListener() {
             @Override
