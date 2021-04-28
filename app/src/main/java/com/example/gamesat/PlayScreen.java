@@ -34,7 +34,6 @@ public class PlayScreen extends AppCompatActivity {
 
         gameDbHelper = new GameDbHelper(this);
 
-
     //----------------------------------------------------------------------------------
         buttonBackPlay.setOnClickListener(new View.OnClickListener() {
             @Override

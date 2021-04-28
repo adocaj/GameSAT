@@ -27,6 +27,7 @@ public class TrainScreen extends AppCompatActivity {
         buttonTrainExit = (Button) findViewById(R.id.buttonTrainExit);
 
         gameDbHelper = new GameDbHelper(this);
+
     //----------------------------------------------------------------------------------
         buttonBackTrain.setOnClickListener(new View.OnClickListener() {
             @Override

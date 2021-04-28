@@ -19,7 +19,7 @@ import java.util.List;
 public class GameDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "GameSat.db";
-    private static final int DATABASE_VERSION = 14; /**  Reset the database num for new tables*/
+    private static final int DATABASE_VERSION = 20; /**  Reset the database num for new tables*/
 
 
     public GameDbHelper(Context context) {
@@ -61,7 +61,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
                 WordQuestionsTable.COLUMN_OPTION2 + " TEXT, " +
                 WordQuestionsTable.COLUMN_OPTION3 + " TEXT, " +
                 WordQuestionsTable.COLUMN_ANSWER_NR + " INTEGER, " +
-                WordQuestionsTable.COLUMN_LEVEL + " INTEGER" +
+                WordQuestionsTable.COLUMN_LEVEL + " INTEGER, " +
+                WordQuestionsTable.COLUMN_CORRECT_VAL + " INTEGER" +
                 " ) ";
 
         db.execSQL(SQL_CREATE_WORD_QUEST_TABLE);
@@ -110,6 +111,20 @@ public class GameDbHelper extends SQLiteOpenHelper {
     }
     //*******************************************************************
 
+    public void fillWordQuestTableIfEmpty(){
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = database.query(WordQuestionsTable.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+        if (cursor != null && cursor.getCount() > 0){
+            return;
+        }
+        fillWordQuestTable();
+    }
 
     // fill word database with word questions
 
@@ -170,6 +185,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
         cv.put(WordQuestionsTable.COLUMN_OPTION3, wordQuestion.getOption3());
         cv.put(WordQuestionsTable.COLUMN_ANSWER_NR, wordQuestion.getAnswerNr());
         cv.put(WordQuestionsTable.COLUMN_LEVEL, wordQuestion.getLevel());
+        cv.put(WordQuestionsTable.COLUMN_CORRECT_VAL, wordQuestion.getCorrectVal()); // all correctVals are zero as default
 
         // now we add the question to the database db
         this.getWritableDatabase().insertWithOnConflict(WordQuestionsTable.TABLE_NAME,null, cv,SQLiteDatabase.CONFLICT_IGNORE);
@@ -177,7 +193,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
     }
 
     //************************************************************************************************
-    public List<Question> getAllWordQuestions(int level){
+    public List<Question> getAllWordQuestionsPerLevel(int level){
         List<Question> wordQuestionList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -192,12 +208,14 @@ public class GameDbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             do {
                 Question question = new Question();
+                question.setQuestionID(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable._ID))); // automatically set by android
                 question.setQuestion(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_QUESTION)));
                 question.setOption1(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION1)));
                 question.setOption2(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION2)));
                 question.setOption3(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION3)));
                 question.setAnswerNr(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_ANSWER_NR)));
                 question.setLevel(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_LEVEL)));
+                question.setCorrectVal(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_CORRECT_VAL)));
                 if (cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_LEVEL)) == level){
                     wordQuestionList.add(question);
                 }
@@ -207,6 +225,125 @@ public class GameDbHelper extends SQLiteOpenHelper {
         return wordQuestionList;
     }
     //*********************************************************************************************************************
+
+
+
+    //************************************************************************************************
+    public List<Question> getAllWordQuestions(){
+
+        List<Question> allWordQuestionList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(WordQuestionsTable.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Question question = new Question();
+                question.setQuestionID(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable._ID))); // automatically set by android
+                question.setQuestion(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_QUESTION)));
+                question.setOption1(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION1)));
+                question.setOption2(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION2)));
+                question.setOption3(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION3)));
+                question.setAnswerNr(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_ANSWER_NR)));
+                question.setLevel(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_LEVEL)));
+                question.setCorrectVal(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_CORRECT_VAL)));
+
+                allWordQuestionList.add(question);
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return allWordQuestionList;
+    }
+    //*********************************************************************************************************************
+
+
+    //************************************************************************************************
+    public List<Question> getWordTrainQuestions(){
+        List<Question> trainWordQuestionList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(WordQuestionsTable.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()){
+            do {
+                Question question = new Question();
+                question.setQuestionID(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable._ID))); // automatically set by android
+                question.setQuestion(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_QUESTION)));
+                question.setOption1(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION1)));
+                question.setOption2(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION2)));
+                question.setOption3(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION3)));
+                question.setAnswerNr(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_ANSWER_NR)));
+                question.setLevel(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_LEVEL)));
+                question.setCorrectVal(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_CORRECT_VAL)));
+                if (cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_CORRECT_VAL)) > 0){
+                    trainWordQuestionList.add(question);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return trainWordQuestionList;
+    }
+    //*********************************************************************************************************************
+
+    public void updateWordQuestionCorrectVal(int questionID, int correctVal){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WordQuestionsTable.COLUMN_CORRECT_VAL, correctVal);
+
+        Cursor cursor = database.query(WordQuestionsTable.TABLE_NAME,
+                new String[]{WordQuestionsTable._ID, WordQuestionsTable.COLUMN_CORRECT_VAL},
+                WordQuestionsTable._ID + " =?",
+                new String[]{String.valueOf(questionID)},
+                null,
+                null,
+                null);
+        if (cursor.moveToFirst()){
+            if (cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_CORRECT_VAL)) == 0){
+                this.getWritableDatabase().updateWithOnConflict(WordQuestionsTable.TABLE_NAME, contentValues,
+                        WordQuestionsTable._ID + "=?",
+                        new String[]{String.valueOf(questionID)},SQLiteDatabase.CONFLICT_IGNORE);
+            }
+        }
+    }
+
+    //-------------------------------------------------------------------------------------
+    public void resetWordQuestionCorrectValues(){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WordQuestionsTable.COLUMN_CORRECT_VAL, 0);
+
+        Cursor cursor = database.query(WordQuestionsTable.TABLE_NAME,
+                new String[]{WordQuestionsTable.COLUMN_CORRECT_VAL},
+                WordQuestionsTable.COLUMN_CORRECT_VAL + " !=?",
+                new String[]{String.valueOf(0)},
+                null,
+                null,
+                null);
+        if (cursor.moveToFirst()){
+            do {
+                this.getWritableDatabase().updateWithOnConflict(WordQuestionsTable.TABLE_NAME, contentValues,
+                        WordQuestionsTable.COLUMN_CORRECT_VAL+ " !=? ",
+                        new String[]{String.valueOf(0)},SQLiteDatabase.CONFLICT_IGNORE);
+            } while (cursor.moveToNext());
+        }
+    }
+    //------------------------------------------------------------------------
 
     // insert user data into the login database
 

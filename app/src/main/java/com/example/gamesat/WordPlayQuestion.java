@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -97,10 +98,10 @@ public class WordPlayQuestion extends AppCompatActivity {
         colorDefaultWCd = textViewWordCountDown.getTextColors();
         //--------------------------------------------------------------------
 
+
         dbHelper = new GameDbHelper(this);
-
-
-        dbHelper.fillWordQuestTable(); // populate the word table with questions
+        dbHelper.fillWordQuestTableIfEmpty();
+        dbHelper.resetWordQuestionCorrectValues();
 
         setWordQuestionList(level);
 
@@ -131,6 +132,8 @@ public class WordPlayQuestion extends AppCompatActivity {
         bSkipWordPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                dbHelper.updateWordQuestionCorrectVal(wordQuestionList.get(questIndex).getQuestionID(), 1);
                 // find new index different from current and previous
                 prevIndex = questIndex;
 
@@ -267,13 +270,13 @@ public class WordPlayQuestion extends AppCompatActivity {
     private void setWordQuestionList(int level){
         switch (level){
             case 1: // if level is 1 get level 1 questions
-                wordQuestionList = dbHelper.getAllWordQuestions(1);
+                wordQuestionList = dbHelper.getAllWordQuestionsPerLevel(1);
                 break;
             case 2:
-                wordQuestionList = dbHelper.getAllWordQuestions(2);
+                wordQuestionList = dbHelper.getAllWordQuestionsPerLevel(2);
                 break;
             case 3:
-                wordQuestionList = dbHelper.getAllWordQuestions(3);
+                wordQuestionList = dbHelper.getAllWordQuestionsPerLevel(3);
                 break;
         }
     }

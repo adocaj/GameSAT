@@ -13,7 +13,7 @@
         android:id="@+id/imageView"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:contentDescription="@string/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/text_vew_word_question1"
+        android:id="@+id/text_vew_word_question_train"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="284dp"
@@ -91,11 +91,12 @@
 
     </RadioGroup>
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewWordTrainConfirm"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         app:cardBackgroundColor="@color/lettuce"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radio_group_word_train">
 
         <Button
-            android:id="@+id/buttonTrainWord"
+            android:id="@+id/bConfirmWordTrain"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -120,12 +121,11 @@
     </androidx.cardview.widget.CardView>
 
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewBackWordTrain"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="28dp"
         app:cardBackgroundColor="@color/lettuce"
         app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -144,9 +144,8 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/cardViewBackWordTrain"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.cardview.widget.CardView>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewWordTrainExit"
