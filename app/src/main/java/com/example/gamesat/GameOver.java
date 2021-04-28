@@ -40,7 +40,7 @@ public class GameOver extends AppCompatActivity {
             gameScore = getIntent().getIntExtra("gameScoreW",0); // either get a word score
             if (gameScore > 0){
                 gameTime = Long.parseLong(getIntent().getStringExtra("gameTimeW"));
-                gameDbHelper.insertUserWordTable(gameDbHelper.getUserName(), gameTime);
+                gameDbHelper.insertUserNameTimeWordTable(gameDbHelper.getUserName(), gameTime);
             }
         } else {
             gameScore = getIntent().getIntExtra("gameScoreP", 0); // or a passage score
@@ -70,8 +70,9 @@ public class GameOver extends AppCompatActivity {
     private void showMessage(int gameScore){
         if (gameScore == 0){
             textViewGameOver.setText("Game Over.");
-        } else {
+            //gameDbHelper.clearUserNameTimeWordTable();
 
+        } else {
             textViewGameOver.setText("Congratulations! You won.");
 
         }

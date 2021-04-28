@@ -19,7 +19,7 @@ import java.util.List;
 public class GameDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "GameSat.db";
-    private static final int DATABASE_VERSION = 12; /**  Reset the database num for new tables*/
+    private static final int DATABASE_VERSION = 14; /**  Reset the database num for new tables*/
 
 
     public GameDbHelper(Context context) {
@@ -162,6 +162,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         Question wordQuestion = new Question(word + " is closest in meaning to:", opt1, opt2, opt3, ansNr, level);
 
+
         ContentValues cv = new ContentValues();
         cv.put(WordQuestionsTable.COLUMN_QUESTION, wordQuestion.getQuestion());
         cv.put(WordQuestionsTable.COLUMN_OPTION1, wordQuestion.getOption1());
@@ -180,7 +181,13 @@ public class GameDbHelper extends SQLiteOpenHelper {
         List<Question> wordQuestionList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + WordQuestionsTable.TABLE_NAME, null);
+        Cursor cursor = db.query(WordQuestionsTable.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
 
         if (cursor.moveToFirst()){
             do {
@@ -206,17 +213,15 @@ public class GameDbHelper extends SQLiteOpenHelper {
     //***********************************************************************************************************
     public void insertUserLogin(String username, String password){
 
-
         ContentValues cv = new ContentValues();
         cv.put(UserLoginDataTable.COLUMN_USERNAME, username);
         cv.put(UserLoginDataTable.COLUMN_PASSWORD, password);
-
         // now we add the question to the database db
         this.getWritableDatabase().insertWithOnConflict(UserLoginDataTable.TABLE_NAME,null, cv, SQLiteDatabase.CONFLICT_IGNORE);
-
     }
     //******************************************
     public void clearAllLoginData(){
+
         this.getWritableDatabase().delete(UserLoginDataTable.TABLE_NAME, null, null);
     }
     //*****************************************
@@ -226,83 +231,103 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
     public String getUserName(){
         SQLiteDatabase db = this.getReadableDatabase();
-        String username = "";
+        String usernameResult = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + UserLoginDataTable.TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT " + UserLoginDataTable.COLUMN_USERNAME +
+                " FROM " + UserLoginDataTable.TABLE_NAME, null);
 
         if (cursor.moveToFirst()){
-            username = cursor.getString(cursor.getColumnIndex(UserLoginDataTable.COLUMN_USERNAME));
+            usernameResult = cursor.getString(cursor.getColumnIndex(UserLoginDataTable.COLUMN_USERNAME));
             cursor.close();
-            return username;
+            return usernameResult;
         }
         cursor.close();
+
         return "";
     }
 
 
     //*****************************************************************************************
     // insert username and time to complete the game
-    public void insertUserWordTable(String username, Long time){
+    public void insertUserNameTimeWordTable(String username, Long time){
 
         ContentValues cv = new ContentValues();
-        // insert if the user doesn't exist, or if they exist, their time is less than current
-        if (doesUserExist(username)){
-            if (isUpdateNeeded(username, time)){ // add only if better time is provided
-                deleteUserNameTimeWord(username);
-                cv.put(UsersWordCompletionTimeTable.COLUMN_USERNAME, username);
-                cv.put(UsersWordCompletionTimeTable.COLUMN_TIME, time);
+        cv.put(UsersWordCompletionTimeTable.COLUMN_USERNAME, username);
+        cv.put(UsersWordCompletionTimeTable.COLUMN_TIME, time);
+
+        // insert if the user doesn't exist, or if they exist and their time is less than current
+        if (doesUserExistInWordTable(username)){
+            if (isUserWordTableUpdateNecessary(username, time)){
+                deleteUserWordTableRecord(username);
                 this.getWritableDatabase().insertWithOnConflict(UsersWordCompletionTimeTable.TABLE_NAME,null, cv, SQLiteDatabase.CONFLICT_IGNORE);
             }
         } else { // add users that do not exist
-            cv.put(UsersWordCompletionTimeTable.COLUMN_USERNAME, username);
-            cv.put(UsersWordCompletionTimeTable.COLUMN_TIME, time);
             this.getWritableDatabase().insertWithOnConflict(UsersWordCompletionTimeTable.TABLE_NAME,null, cv, SQLiteDatabase.CONFLICT_IGNORE);
         }
 
     }
-    //********************************************************
+
+    //******************************************************
 
     // does user exist
-    private boolean doesUserExist(String username){
+    public boolean doesUserExistInWordTable(String username){
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + UsersWordCompletionTimeTable.TABLE_NAME, null);
 
-        if (cursor.moveToFirst()){
-            do {
-                if (cursor.getString(cursor.getColumnIndex(UsersWordCompletionTimeTable.COLUMN_USERNAME)).equals(username)){
-                    cursor.close();
-                    return true;
-                }
-            } while (cursor.moveToNext());
+        // check if a user exists and if their time is larger then current
+        Cursor cursor = db.query(UsersWordCompletionTimeTable.TABLE_NAME,
+                new String[] {UsersWordCompletionTimeTable.COLUMN_USERNAME},
+                UsersWordCompletionTimeTable.COLUMN_USERNAME + "=?",
+                new String[]{username},
+                null,
+                null,
+                null,
+                null
+        );
 
+        if (cursor != null && cursor.getCount() > 0){ // only if results exist
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
+
+    //**********************************************
+    public boolean isUserWordTableUpdateNecessary(String username, Long time){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // check if a user exists and if their time is larger then current
+        Cursor cursor = db.query(UsersWordCompletionTimeTable.TABLE_NAME,
+                new String[] {UsersWordCompletionTimeTable.COLUMN_USERNAME},
+                UsersWordCompletionTimeTable.COLUMN_USERNAME + "=? AND " +
+                UsersWordCompletionTimeTable.COLUMN_TIME + ">?",
+                new String[]{username, String.valueOf(time)},
+                null,
+                null,
+                null,
+                null
+                );
+
+        if (cursor != null && cursor.getCount() > 0){ // only if results exist
+            cursor.close();
+            return true;
         }
         cursor.close();
         return false;
     }
     //***********************************************************
-    // is update necessary
-    private boolean isUpdateNeeded(String username, Long time){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + UsersWordCompletionTimeTable.TABLE_NAME, null);
+    // delete user from table
+    private void deleteUserWordTableRecord(String username){
 
-        if (cursor.moveToFirst()){
-            do {
-                if (cursor.getString(cursor.getColumnIndex(UsersWordCompletionTimeTable.COLUMN_USERNAME)).equals(username)){
-                    if (time < cursor.getLong(cursor.getColumnIndex(UsersWordCompletionTimeTable.COLUMN_TIME))){
-                        cursor.close();
-                        return true;
-                    }
-                }
-            } while (cursor.moveToNext());
-
-        }
-        cursor.close();
-        return false;
+        this.getWritableDatabase().delete(UsersWordCompletionTimeTable.TABLE_NAME,
+                UsersWordCompletionTimeTable.COLUMN_USERNAME + " =?",
+                new String[]{username});
     }
     //******************************************************
-    private void deleteUserNameTimeWord(String username){
-        this.getWritableDatabase().delete(UsersWordCompletionTimeTable.TABLE_NAME, UsersWordCompletionTimeTable.COLUMN_USERNAME + " = " + username, null);
+    public void clearUserNameTimeWordTable(){
+        this.getWritableDatabase().delete(UsersWordCompletionTimeTable.TABLE_NAME, null, null);
     }
     //**************************************************
 }
