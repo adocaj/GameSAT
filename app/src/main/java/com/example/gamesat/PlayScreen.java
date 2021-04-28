@@ -93,7 +93,7 @@ public class PlayScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LeaderBoard.class);
-                intent.putExtra("passBoardSelect", 1);
+                intent.putExtra("wordBoardSelect", 0);
 
                 startActivity(intent);
                 finish();
