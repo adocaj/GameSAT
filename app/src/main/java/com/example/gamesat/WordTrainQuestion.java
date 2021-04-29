@@ -41,7 +41,7 @@ public class WordTrainQuestion extends AppCompatActivity {
     private boolean wordQuestAnswered = false;
     private int allWordQuestCount;
     private int trainWordQuestCount;
-    private int minRepeats = 4;
+    private int minRepeats = 3;
 
     private int questIndex = 0;
     //-------------------------------------------
@@ -75,7 +75,7 @@ public class WordTrainQuestion extends AppCompatActivity {
         gameDbHelper = new GameDbHelper(this);
         gameDbHelper.fillWordQuestTableIfEmpty(); // populate the word question table if needed
 
-        allWordQuestionList = gameDbHelper.getAllWordQuestions(); // get them
+        allWordQuestionList = gameDbHelper.getAllWordQuestions(); // get all the questions
         gameDbHelper.resetWordQuestionCorrectValues();
 
         trainWordQuestionList = new ArrayList<>();
@@ -190,18 +190,31 @@ public class WordTrainQuestion extends AppCompatActivity {
         int ansNumSelect = radioGroupWordTrain.indexOfChild(rbSelected) + 1;
 
 
-        if (ansNumSelect == currentWQ.getAnswerNr()){
-            if (correctVal + 1 < minRepeats){
-                setQuestionCorrectValue(correctVal+1);
-            } else { // remove question if the user gets it right twice in a row
-                setQuestionCorrectValue(0);
-                trainWordQuestionList.clear();
-                resetCorrectValues();
-                getWordTrainList();
+        if (ansNumSelect == currentWQ.getAnswerNr()){ // if answer is correct
+            if (correctVal > 0){ // if the user has gotten the question wrong at some point
+
+                correctVal += 1;
+                if (correctVal < minRepeats){
+
+                    setQuestionCorrectValue(correctVal);
+                    trainWordQuestionList.clear();
+                    getWordTrainList();
+                    trainWordQuestCount = trainWordQuestionList.size();
+                } else { // remove question if the user gets it right twice in a row
+
+                    setQuestionCorrectValue(0);
+                    trainWordQuestionList.clear();
+                    getWordTrainList();
+                    trainWordQuestCount = trainWordQuestionList.size();
+                }
             }
         } else { // if wrong choice selected
             if (!isWordQuestInTrainList()){
-                trainWordQuestionList.add(currentWQ); // add question if not already present
+                correctVal += 1;
+                setQuestionCorrectValue(correctVal);
+                trainWordQuestionList.clear();
+                getWordTrainList();
+                trainWordQuestCount = trainWordQuestionList.size();
             }
         }
 
@@ -232,7 +245,7 @@ public class WordTrainQuestion extends AppCompatActivity {
 
         }
 
-        bConfirmWordTrain.setText("Next " + currentWQ.getCorrectVal());
+        bConfirmWordTrain.setText("Next ");
     }
 
     //******************************************************
@@ -249,13 +262,7 @@ public class WordTrainQuestion extends AppCompatActivity {
         }
     }
     //***************************************************
-    private void resetCorrectValues(){
-        for (Question question: allWordQuestionList){
-            if (currentWQ.getQuestionID() == question.getQuestionID()){
-                question.setCorrectVal(0);
-            }
-        }
-    }
+
     //*****************************************************
 
     private void setQuestionCorrectValue(int correctValue){
