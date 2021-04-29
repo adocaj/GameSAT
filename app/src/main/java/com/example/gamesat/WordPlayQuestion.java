@@ -61,7 +61,7 @@ public class WordPlayQuestion extends AppCompatActivity {
     private int minScore = 0;
     private int maxScore = 15;
 
-    private boolean wordQuestAnswered; // what happens when button is clicked
+    private boolean wordQuestAnswered = false; // what happens when button is clicked
     private int wordQuestionCount; // word questions count for a level
     private int level = 1; // start at level 1
 
@@ -110,10 +110,11 @@ public class WordPlayQuestion extends AppCompatActivity {
 
         showNextWordPlayQuestion();
 
-    //--------------------------------------------------------------------
-        bConfirmWordPlay.setOnClickListener(new View.OnClickListener() {
+    /************************************************************************************/
+        bConfirmWordPlay.setOnClickListener(new View.OnClickListener() { // this is the cause of continuous different questions
             @Override
             public void onClick(View v) {
+
                 if (!wordQuestAnswered){
                     if (rbWordPlay1.isChecked() || rbWordPlay2.isChecked() || rbWordPlay3.isChecked()){
                         //check answer
@@ -124,9 +125,10 @@ public class WordPlayQuestion extends AppCompatActivity {
                 } else { // question answered
                     showNextWordPlayQuestion();
                 }
+
             }
         });
-
+    /*****************************************************************************/
         //---------------------------------------------------------------------
 
         bSkipWordPlay.setOnClickListener(new View.OnClickListener() {
@@ -164,12 +166,16 @@ public class WordPlayQuestion extends AppCompatActivity {
 
     }
 
+    /** -------- End of onCreate **/
+
     private void showNextWordPlayQuestion(){
+
+        //-----------------------------------------------
         rbWordPlay1.setTextColor(textClrDefaultRb);
         rbWordPlay2.setTextColor(textClrDefaultRb);
         rbWordPlay3.setTextColor(textClrDefaultRb);
         rbGroupWordPlay.clearCheck();
-
+        //--------------------------------------------------
 
         // if the score is not minScore or maxScore
         if (wordPlayScore != minScore && wordPlayScore != maxScore){
@@ -208,7 +214,7 @@ public class WordPlayQuestion extends AppCompatActivity {
 
             startCountDown();
 
-        } else { // score reaches 0 or 30, or no more questions
+        } else { // score reaches 0 or 30
             finishWordPlay();
         }
     }
@@ -284,6 +290,7 @@ public class WordPlayQuestion extends AppCompatActivity {
 
     //******************************************************************
     private void checkWPAnswer(){ // check word play answer
+
         wordQuestAnswered = true; // question has been answered
 
         countDownTimer.cancel(); // stop the timer once the answer has been locked in
@@ -309,9 +316,9 @@ public class WordPlayQuestion extends AppCompatActivity {
             // increase score
             wordPlayScore += 1;
 
-
         } else {
             wordPlayScore -= 1; // decrease score
+            dbHelper.updateWordQuestionCorrectVal(wordQuestionList.get(questIndex).getQuestionID(),1);
         }
 
         // show solution regardless

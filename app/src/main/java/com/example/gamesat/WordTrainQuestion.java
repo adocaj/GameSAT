@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class WordTrainQuestion extends AppCompatActivity {
 
@@ -33,8 +38,10 @@ public class WordTrainQuestion extends AppCompatActivity {
 
     private Question currentWQ;
 
-    private boolean wordQuestAnswered;
-    private int totalWordQuestionCount;
+    private boolean wordQuestAnswered = false;
+    private int allWordQuestCount;
+    private int trainWordQuestCount;
+    private int minRepeats = 4;
 
     private int questIndex = 0;
     //-------------------------------------------
@@ -58,13 +65,60 @@ public class WordTrainQuestion extends AppCompatActivity {
         rbWordTrain1 = findViewById(R.id.radio_button_word_train1);
         rbWordTrain2 = findViewById(R.id.radio_button_word_train2);
         rbWordTrain3 = findViewById(R.id.radio_button_word_train3);
+
+        bConfirmWordTrain = findViewById(R.id.bConfirmWordTrain);
         //-----------------------------------------------------
 
         rbDefaultColorWT = rbWordTrain1.getTextColors(); // store the default button color
         //-------------------------------------------------
 
         gameDbHelper = new GameDbHelper(this);
-        gameDbHelper.fillWordQuestTableIfEmpty();
+        gameDbHelper.fillWordQuestTableIfEmpty(); // populate the word question table if needed
+
+        allWordQuestionList = gameDbHelper.getAllWordQuestions(); // get them
+        gameDbHelper.resetWordQuestionCorrectValues();
+
+        trainWordQuestionList = new ArrayList<>();
+        allWordQuestCount = allWordQuestionList.size();
+
+        if (allWordQuestCount > 0){
+            Collections.shuffle(allWordQuestionList);
+        }
+
+        getWordTrainList();
+        if (!trainWordQuestionList.isEmpty()){
+            trainWordQuestCount = trainWordQuestionList.size();
+            Collections.shuffle(trainWordQuestionList);
+        } else {
+            trainWordQuestCount = 0;
+        }
+
+
+        showNextWordTrainQuestion();
+
+        /*****************************************/
+
+
+        bConfirmWordTrain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!wordQuestAnswered){
+                    if (rbWordTrain1.isChecked() || rbWordTrain2.isChecked() || rbWordTrain3.isChecked()){
+                        checkWTAnswer();
+                    } else {
+                        Toast.makeText(WordTrainQuestion.this, "Please select an answer.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    showNextWordTrainQuestion();
+                }
+
+            }
+        });
+
+
+
+        /******************************************/
 
     //--------------------------------------------------------------------------------
         buttonBackWordTrain.setOnClickListener(new View.OnClickListener() {
@@ -88,4 +142,146 @@ public class WordTrainQuestion extends AppCompatActivity {
     //------------------------------------------------------------------------
 
     }
+
+    /** ---- End of onCreate ------**/
+
+    private void showNextWordTrainQuestion(){
+
+        //----------------------------------------
+        rbWordTrain1.setTextColor(rbDefaultColorWT);
+        rbWordTrain2.setTextColor(rbDefaultColorWT);
+        rbWordTrain3.setTextColor(rbDefaultColorWT);
+        radioGroupWordTrain.clearCheck();
+        //------------------------------------------
+
+        if (trainWordQuestCount > 0 ){
+            questIndex = findQuestionIndex(trainWordQuestCount); // get missed question if possible
+            currentWQ = trainWordQuestionList.get(questIndex);
+        } else {
+            questIndex = findQuestionIndex(allWordQuestCount); // or any question after
+            currentWQ = allWordQuestionList.get(questIndex);
+        }
+
+        textViewWordTrainQuestion.setText(currentWQ.getQuestion()); // display question
+        rbWordTrain1.setText(currentWQ.getOption1());
+        rbWordTrain2.setText(currentWQ.getOption2());
+        rbWordTrain3.setText(currentWQ.getOption3());
+
+        wordQuestAnswered = false; // getting things ready for the next question
+        bConfirmWordTrain.setText("Confirm");
+
+    }
+    //*******************************************
+
+    private int findQuestionIndex(int seedVal){
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(seedVal);
+        return randomIndex;
+    }
+    //******************************************************
+
+    private void checkWTAnswer(){
+
+        wordQuestAnswered = true; // question has been answered
+        int correctVal = currentWQ.getCorrectVal();
+
+        RadioButton rbSelected = findViewById(radioGroupWordTrain.getCheckedRadioButtonId());
+        int ansNumSelect = radioGroupWordTrain.indexOfChild(rbSelected) + 1;
+
+
+        if (ansNumSelect == currentWQ.getAnswerNr()){
+            if (correctVal + 1 < minRepeats){
+                setQuestionCorrectValue(correctVal+1);
+            } else { // remove question if the user gets it right twice in a row
+                setQuestionCorrectValue(0);
+                trainWordQuestionList.clear();
+                resetCorrectValues();
+                getWordTrainList();
+            }
+        } else { // if wrong choice selected
+            if (!isWordQuestInTrainList()){
+                trainWordQuestionList.add(currentWQ); // add question if not already present
+            }
+        }
+
+        showSolutionWT();
+
+    }
+
+    //***********************************************
+    private void showSolutionWT(){
+
+        rbWordTrain1.setTextColor(Color.RED);
+        rbWordTrain2.setTextColor(Color.RED);
+        rbWordTrain3.setTextColor(Color.RED);
+
+        switch (currentWQ.getAnswerNr()){
+            case 1:
+                rbWordTrain1.setTextColor(DarkGreen);
+                rbWordTrain1.setText(currentWQ.getOption1() + " is correct.");
+                break;
+            case 2:
+                rbWordTrain2.setTextColor(DarkGreen);
+                rbWordTrain2.setText(currentWQ.getOption2() + " is correct.");
+                break;
+            case 3:
+                rbWordTrain3.setTextColor(DarkGreen);
+                rbWordTrain3.setText(currentWQ.getOption3() + " is correct.");
+                break;
+
+        }
+
+        bConfirmWordTrain.setText("Next " + currentWQ.getCorrectVal());
+    }
+
+    //******************************************************
+    private boolean isWordQuestInTrainList(){
+        if (trainWordQuestionList.isEmpty()){
+            return false;
+        } else {
+            for (Question question: trainWordQuestionList){
+                if (currentWQ.getQuestionID() == question.getQuestionID()){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    //***************************************************
+    private void resetCorrectValues(){
+        for (Question question: allWordQuestionList){
+            if (currentWQ.getQuestionID() == question.getQuestionID()){
+                question.setCorrectVal(0);
+            }
+        }
+    }
+    //*****************************************************
+
+    private void setQuestionCorrectValue(int correctValue){
+        for (Question question: allWordQuestionList){
+            if (currentWQ.getQuestionID() == question.getQuestionID()){
+                question.setCorrectVal(correctValue);
+            }
+        }
+    }
+
+    //*******************************************************
+
+
+    //***********************************************
+    private void getWordTrainList(){
+        for (Question question: allWordQuestionList){
+            if (question.getCorrectVal() > 0 && question.getCorrectVal() < minRepeats){
+                trainWordQuestionList.add(question);
+            }
+        }
+    }
+
+    //*****************************************************
+
+
+
+
+
 }

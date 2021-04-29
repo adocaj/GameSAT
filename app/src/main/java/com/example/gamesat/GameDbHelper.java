@@ -265,38 +265,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
     //*********************************************************************************************************************
 
 
-    //************************************************************************************************
-    public List<Question> getWordTrainQuestions(){
-        List<Question> trainWordQuestionList = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(WordQuestionsTable.TABLE_NAME,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
-
-        if (cursor.moveToFirst()){
-            do {
-                Question question = new Question();
-                question.setQuestionID(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable._ID))); // automatically set by android
-                question.setQuestion(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_QUESTION)));
-                question.setOption1(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION1)));
-                question.setOption2(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION2)));
-                question.setOption3(cursor.getString(cursor.getColumnIndex(WordQuestionsTable.COLUMN_OPTION3)));
-                question.setAnswerNr(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_ANSWER_NR)));
-                question.setLevel(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_LEVEL)));
-                question.setCorrectVal(cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_CORRECT_VAL)));
-                if (cursor.getInt(cursor.getColumnIndex(WordQuestionsTable.COLUMN_CORRECT_VAL)) > 0){
-                    trainWordQuestionList.add(question);
-                }
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return trainWordQuestionList;
-    }
     //*********************************************************************************************************************
 
     public void updateWordQuestionCorrectVal(int questionID, int correctVal){
