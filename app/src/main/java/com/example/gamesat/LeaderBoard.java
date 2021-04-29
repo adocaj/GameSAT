@@ -16,7 +16,6 @@ import com.example.gamesat.GameContract.*;
 public class LeaderBoard extends AppCompatActivity {
 
     Button buttonExitLeaderBoard, buttonBackLeaderBoard;
-    //RecyclerView recyclerViewList;
     private int wBoardSelect;
     GameDbHelper gameDbHelper;
     SQLiteDatabase database;
@@ -40,13 +39,13 @@ public class LeaderBoard extends AppCompatActivity {
         recyclerViewList.setLayoutManager(new LinearLayoutManager(this));
 
 
-        if (wBoardSelect > 0){
-            // display word leader board
-            gameAdapter = new GameAdapter(this, getAllNameTimeWord());
-            recyclerViewList.setAdapter(gameAdapter);
+        if (wBoardSelect > 0){ // adjust the right cursor based on which leader board is selected
+            gameAdapter = new GameAdapter(this, getAllNameTimeWord(), wBoardSelect);
         } else {
-            // display pass leader board
+            gameAdapter = new GameAdapter(this, getAllNameTimePassage(), wBoardSelect);
         }
+
+        recyclerViewList.setAdapter(gameAdapter);
 
         //-------------------------------------------------------
 
@@ -83,6 +82,19 @@ public class LeaderBoard extends AppCompatActivity {
                 " LIMIT " + displayCount;
 
         return database.rawQuery(SQL_USERNAME_TIME_WORD,null);
+    }
+    //******************************************
+
+    //****************************************
+    private Cursor getAllNameTimePassage(){
+        final String SQL_USERNAME_TIME_Passage = "SELECT " +
+                UsersPassageCompletionTimeTable.COLUMN_USERNAME + ", " +
+                UsersPassageCompletionTimeTable.COLUMN_TIME +
+                " FROM " + UsersPassageCompletionTimeTable.TABLE_NAME +
+                " ORDER BY " + UsersPassageCompletionTimeTable.COLUMN_TIME +
+                " LIMIT " + displayCount;
+
+        return database.rawQuery(SQL_USERNAME_TIME_Passage,null);
     }
     //******************************************
 

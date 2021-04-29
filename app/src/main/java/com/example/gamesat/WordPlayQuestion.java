@@ -1,7 +1,9 @@
 package com.example.gamesat;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -147,9 +149,35 @@ public class WordPlayQuestion extends AppCompatActivity {
         buttonBackWordPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
-                startActivity(intent);
-                finish();
+
+
+                //-------------------------------------------------------------
+                AlertDialog alertDialog = new AlertDialog.Builder(WordPlayQuestion.this)
+
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to leave play?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //set what would happen when positive button is clicked
+                                Intent intent = new Intent(getApplicationContext(), PlayScreen.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //set what should happen when negative button is clicked
+                                Toast.makeText(getApplicationContext(),"Resuming Play.",Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
+
+                //---------------------------------------------------------------
+
+
             }
         });
     //--------------------------------------------------------------------------------------

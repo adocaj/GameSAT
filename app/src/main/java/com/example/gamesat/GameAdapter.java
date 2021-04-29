@@ -15,10 +15,12 @@ public class GameAdapter extends RecyclerView.Adapter <GameAdapter.GameViewHolde
 
     private Context context;
     private Cursor cursor;
+    private int wBoardSelect;
 
-    public GameAdapter(Context context, Cursor cursor){
+    public GameAdapter(Context context, Cursor cursor, int wBoardSelect){
         this.context = context;
         this.cursor = cursor;
+        this.wBoardSelect = wBoardSelect;
     }
 
     public class GameViewHolder extends RecyclerView.ViewHolder{
@@ -47,11 +49,18 @@ public class GameAdapter extends RecyclerView.Adapter <GameAdapter.GameViewHolde
         if (!cursor.moveToPosition(position)){
             return; // no items to display
         }
-        String username = cursor.getString(cursor.getColumnIndex(UsersWordCompletionTimeTable.COLUMN_USERNAME));
-        long time = cursor.getLong(cursor.getColumnIndex(UsersWordCompletionTimeTable.COLUMN_TIME));
-
-        holder.textViewUserName.setText(username);
-        holder.textViewTime.setText(String.valueOf(time));
+        if (wBoardSelect > 0){ // positive word board select means the word board was chosen
+            String username = cursor.getString(cursor.getColumnIndex(UsersWordCompletionTimeTable.COLUMN_USERNAME));
+            long time = cursor.getLong(cursor.getColumnIndex(UsersWordCompletionTimeTable.COLUMN_TIME));
+            holder.textViewUserName.setText(username);
+            holder.textViewTime.setText(String.valueOf(time));
+        } else {
+            // if word is not selected then passage board is selected
+            String username = cursor.getString(cursor.getColumnIndex(UsersPassageCompletionTimeTable.COLUMN_USERNAME));
+            long time = cursor.getLong(cursor.getColumnIndex(UsersPassageCompletionTimeTable.COLUMN_TIME));
+            holder.textViewUserName.setText(username);
+            holder.textViewTime.setText(String.valueOf(time));
+        }
     }
 
     @Override

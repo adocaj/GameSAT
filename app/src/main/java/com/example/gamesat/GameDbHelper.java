@@ -19,7 +19,7 @@ import java.util.List;
 public class GameDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "GameSat.db";
-    private static final int DATABASE_VERSION = 20; /**  Reset the database num for new tables*/
+    private static final int DATABASE_VERSION = 21; /**  Reset the database num for new tables*/
 
 
     public GameDbHelper(Context context) {
@@ -74,7 +74,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //----------------------------------------------------------------------
 
-        // create table of users and their completion times
+        // create table of users and their Word Game completion times
 
         final String SQL_CREATE_WORD_USERNAME_TIME_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 UsersWordCompletionTimeTable.TABLE_NAME + " ( " +
@@ -91,6 +91,29 @@ public class GameDbHelper extends SQLiteOpenHelper {
                 "username_time_word_index ON " +  UsersWordCompletionTimeTable.TABLE_NAME + "(" + UsersWordCompletionTimeTable.COLUMN_USERNAME
                 + "," + UsersWordCompletionTimeTable.COLUMN_TIME + ")";
         db.execSQL(SQL_CREATE_WORD_USERNAME_TIME_INDEX); // we don't want same user, same time to be entered repeatedly
+
+
+        //----------------------------------------------------------------------
+
+        //----------------------------------------------------------------------
+
+        // create table of users and their Passage Game completion times
+
+        final String SQL_CREATE_Passage_USERNAME_TIME_TABLE = "CREATE TABLE IF NOT EXISTS " +
+                UsersPassageCompletionTimeTable.TABLE_NAME + " ( " +
+                UsersPassageCompletionTimeTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                UsersPassageCompletionTimeTable.COLUMN_USERNAME + " TEXT, " +
+                UsersPassageCompletionTimeTable.COLUMN_TIME + " INTEGER" +
+                " ) ";
+        //*** Time will be stored as an integer and retrieved as a long.
+
+        db.execSQL(SQL_CREATE_Passage_USERNAME_TIME_TABLE); // create the username time table for passage game
+
+        // create a unique index for the table to avoid duplicate username and times
+        final String SQL_CREATE_Passage_USERNAME_TIME_INDEX = "CREATE UNIQUE INDEX IF NOT EXISTS " +
+                "username_time_passage_index ON " +  UsersPassageCompletionTimeTable.TABLE_NAME + "(" + UsersPassageCompletionTimeTable.COLUMN_USERNAME
+                + "," + UsersWordCompletionTimeTable.COLUMN_TIME + ")";
+        db.execSQL(SQL_CREATE_Passage_USERNAME_TIME_INDEX); // we don't want same user, same time to be entered repeatedly
 
 
         //----------------------------------------------------------------------
