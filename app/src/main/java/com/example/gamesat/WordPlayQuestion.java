@@ -104,6 +104,7 @@ public class WordPlayQuestion extends AppCompatActivity {
         dbHelper = new GameDbHelper(this);
         dbHelper.fillWordQuestTableIfEmpty();
         dbHelper.resetWordQuestionCorrectValues();
+        dbHelper.resetPassageQuestionCorrectValues();
 
         setWordQuestionList(level);
 
@@ -387,7 +388,6 @@ public class WordPlayQuestion extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), GameOver.class);
         intent.putExtra("wScoreExists", 1);
         intent.putExtra("gameScoreW", wordPlayScore);
-
         intent.putExtra("gameTimeW", String.valueOf(wordGameTime));
 
         startActivity(intent);

@@ -15,7 +15,6 @@ public class GameOver extends AppCompatActivity {
     Button buttonBackGameOver, buttonExitGameOver;
     private int gameScore;
     private int wordScoreExists;
-    private int passScoreExists;
     private TextView textViewGameOver;
 
     GameDbHelper gameDbHelper;
@@ -34,7 +33,6 @@ public class GameOver extends AppCompatActivity {
         gameDbHelper = new GameDbHelper(this);
 
         wordScoreExists = getIntent().getIntExtra("wScoreExists", 0);
-        passScoreExists = getIntent().getIntExtra("pScoreExists", 0);
 
         if (wordScoreExists > 0){
             gameScore = getIntent().getIntExtra("gameScoreW",0); // either get a word score
@@ -43,7 +41,11 @@ public class GameOver extends AppCompatActivity {
                 gameDbHelper.insertUserNameTimeWordTable(gameDbHelper.getUserName(), gameTime);
             }
         } else {
-            gameScore = getIntent().getIntExtra("gameScoreP", 0); // or a passage score
+            gameScore = getIntent().getIntExtra("gameScoreP",0); // either get a word score
+            if (gameScore > 0){
+                gameTime = Long.parseLong(getIntent().getStringExtra("gameTimeP"));
+                gameDbHelper.insertUserNameTimePassageTable(gameDbHelper.getUserName(), gameTime);
+            }
         }
 
         showMessage(gameScore); // display game ending message to the screen
@@ -70,7 +72,8 @@ public class GameOver extends AppCompatActivity {
     private void showMessage(int gameScore){
         if (gameScore == 0){
             textViewGameOver.setText("Game Over.");
-            //gameDbHelper.clearUserNameTimeWordTable();
+            gameDbHelper.clearUserNameTimeWordTable();
+            gameDbHelper.clearUserNameTimePassageTable();
 
         } else {
             textViewGameOver.setText("Congratulations! You won.");

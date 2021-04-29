@@ -66,14 +66,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_vew_passage_question1"
+        android:id="@+id/text_vew_passage_question"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="308dp"
         android:gravity="left"
         android:text="@string/questionP"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +148,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radio_group_passage_play">
 
         <Button
-            android:id="@+id/buttonPlayWord"
+            android:id="@+id/buttonPlayPassConfirm"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
