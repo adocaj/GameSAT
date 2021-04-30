@@ -472,6 +472,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         /**---------------------- Level 1 -------------------------------------------------*/
 
+        //*-------A----
+
         addWordQuestion("Aberration", "anomaly", "remote", "desist", 1, 1);
 
         addWordQuestion("Abreast", "uncertain", "informed", "above", 2, 1);
@@ -483,6 +485,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
         addWordQuestion("Adept", "proficient", "uncertain", "adorn", 1, 1);
 
         //---------------------------------------------------------------------------------------------------------
+
+        //*----B-----
 
         addWordQuestion("Blight", "mite", "sophisticate", "damage", 3, 1);
 
@@ -496,11 +500,135 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //--------------------------------------------------------------------------------------------------------------
 
-        addWordQuestion("Cacophony", "calm", "sinous", "clamor", 3, 1);
+        //*----C---
+
+        addWordQuestion("Cacophony", "calm", "sinuous", "clamor", 3, 1);
+
+        addWordQuestion("Coda", "cede", "finale", "bard", 2, 1);
+
+        addWordQuestion("Confound", "contradict", "chagrin", "cerebral", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---D--
+
+        addWordQuestion("Deign", "anodyne", "epithet", "condescend", 3, 1);
+
+        addWordQuestion("Docile", "quandary", "compliant", "cerebral", 2, 1);
+
+        addWordQuestion("Doff", "remove", "goad", "lint", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---E--
+
+        addWordQuestion("Endow", "egress", "cursory", "equip", 3, 1);
+
+        addWordQuestion("Ephemeral", "eclectic", "fleeting", "cerebral", 2, 1);
+
+        addWordQuestion("Ethos", "disposition", "efficacy", "ebullient", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---F--
+
+        addWordQuestion("Facetious", "fallible", "cursory", "flippant", 3, 1);
+
+        addWordQuestion("Fallow", "fallible", "dormant", "cerebral", 2, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---G--
+
+        addWordQuestion("Gist", "glow", "cursory", "quintessence", 3, 1);
+
+        addWordQuestion("Gossamer", "erudite", "delicate", "cerebral", 2, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---I--
+
+        addWordQuestion("Impetuous", "glow", "cursory", "hasty", 3, 1);
+
+        addWordQuestion("Ingrate", "ungrateful", "inept", "cerebral", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---L--
+
+        addWordQuestion("Loll", "glow", "cursory", "lounge", 3, 1);
+
+        addWordQuestion("Lurid", "exaggerated", "inept", "lurk", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---M--
+
+        addWordQuestion("Mar", "glow", "spoil", "mend", 2, 1);
+
+        addWordQuestion("Morose", "sullen", "jettison", "lurk", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---O--
+
+        addWordQuestion("Oblique", "opus", "spoil", "inexplicit", 3, 1);
+
+        addWordQuestion("Opaque", "obscure", "jettison", "opiate", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---O--
+
+        addWordQuestion("Placate", "opus", "spoil", "mollify", 3, 1);
+
+        addWordQuestion("Platitude", "obscure", "cliché", "opiate", 2, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---R--
+
+        addWordQuestion("Reticence", "reverence", "spoil", "introversion", 3, 1);
+
+        addWordQuestion("Rue", "bemoan", "cliché", "opiate", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---S--
+
+        addWordQuestion("Surly", "reverence", "spoil", "grumpy", 3, 1);
+
+        addWordQuestion("Stigma", "bemoan", "dishonor", "opiate", 2, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---T--
+
+        addWordQuestion("Tome", "opiate", "spoil", "opus", 3, 1);
+
+        addWordQuestion("Torrid", "bemoan", "difficult", "reverence", 2, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---V--
+
+        addWordQuestion("Vestige", "opiate", "remnant", "opus", 2, 1);
+
+        addWordQuestion("Vapid", "insipid", "difficult", "reverence", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*---W--
+
+        addWordQuestion("Wry", "opiate", "remnant", "sardonic", 3, 1);
+
+        addWordQuestion("Winsome", "insipid", "difficult", "charming", 3, 1);
 
         //--------------------------------------------------------------------------------------------------------------
 
         /**---------------------- Level 2 -------------------------------------------------*/
+
+        //*-------A----
 
         addWordQuestion("Abasement", "anomaly", "belittlement", "aggravate", 2,2);
 
@@ -514,6 +642,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //-------------------------------------------------------------------------------------------------------------
 
+        //*----B-----
+
         addWordQuestion("Barrage", "bogus", "edify", "abundance", 3, 2);
 
         addWordQuestion("Bevy", "cluster", "brave", "evasive", 1, 2);
@@ -526,7 +656,133 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //--------------------------------------------------------------------------------
 
+        //*----C-----
+
+        addWordQuestion("Canonical", "bogus", "edify", "established", 3, 2);
+
+        addWordQuestion("Capricious", "cluster", "fickle", "evasive", 2, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----D-----
+
+        addWordQuestion("Dictum", "maxim", "edify", "established", 1, 2);
+
+        addWordQuestion("Discordant", "cluster", "fickle", "incongruous", 3, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----F-----
+
+        addWordQuestion("Foible", "maxim", "peculiarity", "established", 2, 2);
+
+        addWordQuestion("Flout", "defy", "fickle", "incongruous", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----G-----
+
+        addWordQuestion("Gall", "audacity", "peculiarity", "established", 1, 2);
+
+        addWordQuestion("Goad", "defy", "fickle", "provoke", 3, 2);
+
+        addWordQuestion("Grandiloquent", "pompous", "fickle", "incongruous", 1,2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----H-----
+
+        addWordQuestion("Hapless", "audacity", "peculiarity", "unlucky", 3, 2);
+
+        addWordQuestion("Homage", "tribute", "fickle", "provoke", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----I-----
+
+        addWordQuestion("Immutable", "permanent", "peculiarity", "unlucky", 1, 2);
+
+        addWordQuestion("Inculcate", "tribute", "infuse", "provoke", 2, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----L-----
+
+        addWordQuestion("Laconic", "permanent", "peculiarity", "concise", 3, 2);
+
+        addWordQuestion("Largesse", "munificence", "infuse", "provoke", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----M-----
+
+        addWordQuestion("Malign", "permanent", "harmful", "concise", 2, 2);
+
+        addWordQuestion("Maudlin", "munificence", "infuse", "emotional", 3, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----N-----
+
+        addWordQuestion("Nascent", "permanent", "harmful", "emerging", 3, 2);
+
+        addWordQuestion("Nexus", "union", "infuse", "emotional", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----P-----
+
+        addWordQuestion("Opine", "permanent", "suggest", "emerging", 2, 2);
+
+        addWordQuestion("Panache", "style", "infuse", "emotional", 1, 2);
+
+        addWordQuestion("Paragon", "style", "infuse", "model", 3, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----Q-----
+
+        addWordQuestion("Qualm", "misgiving", "suggest", "emerging", 1, 2);
+
+        addWordQuestion("Quell", "style", "suppress", "emotional", 2, 2);
+
+        addWordQuestion("Quotidian", "ordinary", "infuse", "model", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----R-----
+
+        addWordQuestion("Recalcitrant", "misgiving", "uncooperative", "emerging", 2, 2);
+
+        addWordQuestion("Recant", "style", "suppress", "disavow", 3, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----S-----
+
+        addWordQuestion("Sardonic", "satirical", "uncooperative", "emerging", 1, 2);
+
+        addWordQuestion("Soliloquy", "monologue", "suppress", "disavow", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----T-----
+
+        addWordQuestion("Tenet", "satirical", "precept", "urge", 2, 2);
+
+        addWordQuestion("Tout", "endorse", "suppress", "disavow", 1, 2);
+
+        addWordQuestion("Urbane", "endorse", "suppress", "suave", 3, 2);
+
+        addWordQuestion("Verbose", "endorse", "suppress", "loquacious", 3, 2);
+
+        addWordQuestion("Whet", "stimulate ", "suppress", "suave", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
         /**---------------------- Level 3 -------------------------------------------------*/
+
+        //*----A-----
 
         addWordQuestion("Abeyance", "anomaly", "remission", "chisel", 2,3);
 
@@ -538,6 +794,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         addWordQuestion("Canard", "cryptic", "gossip", "shard", 2, 3);
         //-------------------------------------------------------------------------------------------------
+
+        //*----C-----
 
         addWordQuestion("Catalyst", "esoteric", "imbroglio", "stimulus", 3, 3);
 
@@ -551,6 +809,54 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //-------------------------------------------------------------------------------------------------------------
 
+        //*----D-----
+
+        addWordQuestion("Dilettante", "dabbler", "imbroglio", "stimulus", 1, 3);
+
+        addWordQuestion("Diurnal", "relief", "daily", "cabal", 2, 3);
+
+        //-------------------------------------------------------------------------------------------------------------
+
+        //*----E-----
+
+        addWordQuestion("Ebullient:", "dabbler", "imbroglio", "joyful", 3, 3);
+
+        addWordQuestion("Edify", "relief", "daily", "instruct", 3, 3);
+
+        addWordQuestion("Egress", "dabbler", "departure", "stimulus", 2, 3);
+
+        addWordQuestion("Ersatz", "substitute", "daily", "superior", 1, 3);
+
+        addWordQuestion("Erstwhile", "dabbler", "former", "stimulus", 2, 3);
+
+        //-------------------------------------------------------------------------------------------------------------
+
+        //*----F-----
+
+        addWordQuestion("Fracas", "dabbler", "departure", "scuffle", 3, 3);
+
+        addWordQuestion("Fusillade", "salvo", "daily", "scuffle", 1, 3);
+
+        //-------------------------------------------------------------------------------------------------------------
+
+        //*----G-----
+
+        addWordQuestion("Gaffe", "blunder", "departure", "scuffle", 1, 3);
+
+        addWordQuestion("Gainsay", "salvo", "daily", "oppose", 3, 3);
+
+        //-------------------------------------------------------------------------------------------------------------
+
+        //*----H-----
+
+        addWordQuestion("Halcyon", "blunder", "departure", "happy", 3, 3);
+
+        addWordQuestion("Hermetic", "salvo", "daily", "airtight", 3, 3);
+
+        addWordQuestion("Heterodox", "heterogeneous", "unorthodox", "daily", 2, 3);
+
+        //-------------------------------------------------------------------------------------------------------------
+
     }
 
     // fill database with passage questions
@@ -558,6 +864,9 @@ public class GameDbHelper extends SQLiteOpenHelper {
     public void fillPassageQuestTable(){
 
         /**---------------------- Level 1 -------------------------------------------------*/
+
+        //*----A-----
+
 
         addPassageQuestion("Like the rest of the world, the store is a slight aberration of normal. " +
                 "Aberration in the sentence above", "dormant", "remote", "anomaly", 3, 1);
@@ -576,6 +885,9 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //------------------------------------------------------------------------------------------------------------
 
+        //*----B-----
+
+
         addPassageQuestion("Because of slowing growth and climate-related blights, the forests will become an emissions source. " +
                 "Blight in the sentence above", "damage", "mite", "pest", 1, 1);
 
@@ -583,7 +895,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
                 "Blithe in the sentence above", "vivacious", "bright", "indifferent", 3, 1);
 
         addPassageQuestion("The case against the defendant has been bolstered by the discovery of important new evidence. " +
-                        "Bolster in the sentence above","elaborate", "forgery", "strengthen", 3, 1);
+                "Bolster in the sentence above","elaborate", "forgery", "strengthen", 3, 1);
 
         addPassageQuestion("He was a showy, bombastic man, with a weakness for fine clothes and other personal adornments. " +
                 "Bombastic in the sentence above", "brass", "turgid", "elaborate", 2, 1);
@@ -593,14 +905,170 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //--------------------------------------------------------------------------------------------------------------
 
+        //*----C-----
+
+
         addPassageQuestion("The cacophony of voices faded to a dull hum as she began to read what she’d written. " +
                 "Cacophony in the sentence above", "clamor", "calm", "sordid", 1, 1);
+
+        addPassageQuestion("A short introduction and a coda are added, and the diction throughout is thrown into high relief. " +
+                "Coda in the sentence above", "cede", "finale", "divulge", 2, 1);
+
+        addPassageQuestion("The U.S. researchers acknowledge some confounding factors in the study. " +
+                "Confound in the sentence above", "create", "evince", "contradict", 3, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----D----
+
+        addPassageQuestion("If the Senate deigns to consider and confirm a nominee, do not expect changes overnight. " +
+                "Deign in the sentence above", "condescend", "anodyne", "epithet", 1, 1);
+
+        addPassageQuestion("Docile with humans, they are fierce defenders of territory and their young. " +
+                "Docile in the sentence above", "dissent", "compliant", "contradict", 2, 1);
+
+        addPassageQuestion("To don shoes, to doff them, or even to throw them at somebody? " +
+                "Doff in the sentence above", "dolt", "evince", "remove", 3, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----E----
+
+        addPassageQuestion("Good and inspiring teachers are portrayed as endowed with supernatural gifts. " +
+                "Endow in the sentence above", "equip", "egress", "epithet", 1, 1);
+
+        addPassageQuestion("The mayfly is an ephemeral creature: its adult life lasts little more than a day. " +
+                "Ephemeral in the sentence above", "eclectic", "fleeting", "contradict", 2, 1);
+
+        addPassageQuestion("They run crooked gambling, so the law under their local ethos must be that crooked gambling is the norm. " +
+                "Ethos in the sentence above", "efficacy", "evince", "disposition", 3, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----F----
+
+        addPassageQuestion("Instead, the crowd began sarcastically to cheer him on and showered him with facetious advice. " +
+                "Facetious in the sentence above", "fallible", "humorous", "epithet", 2, 1);
+
+        addPassageQuestion("Farmers have learned that it is advisable to permit land to lie fallow every few years. " +
+                "Fallow in the sentence above", "uncultivated", "fleeting", "contradict", 1, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----G----
+
+        addPassageQuestion("Machine translation, too, has gone from terrible to usable for getting the gist of a text. " +
+                "Gist in the sentence above", "glib", "quintessence", "epithet", 2, 1);
+
+        addPassageQuestion("They would laugh in gossamer tones, and then move on gracefully to someone else. " +
+                "Gossamer in the sentence above", "uncultivated", "fleeting", "delicate", 3, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----I----
+
+        addPassageQuestion("It was a stultifying procession of patriotic songs insipid skits and bald propaganda. " +
+                "Insipid in the sentence above", "glib", "vapid", "epithet", 2, 1);
+
+        addPassageQuestion("If you mean I am an ingrate, that is an unpleasant word, Aunt Mary. " +
+                "Ingrate in the sentence above", "ungrateful", "inept", "delicate", 1, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----L----
+
+        addPassageQuestion("They loll around in their chairs watching television. " +
+                "Loll in the sentence above", "glib", "lounge", "laud", 2, 1);
+
+        addPassageQuestion("Their absence from the public eye, tends to spark unbelievable lurid rumours. " +
+                "Lurid in the sentence above", "incline", "inept", "melodramatic", 3, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----M----
+
+        addPassageQuestion("I barely recognized him, convulsed with mirth, breathing hard, his face bright pink. " +
+                "Mirth in the sentence above", "merriment", "lounge", "laud", 1, 1);
+
+        addPassageQuestion("Feeling morose is difficult while actively wishing a person to be happy. " +
+                "Morose in the sentence above", "incline", "missive", "sulky", 3, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----O----
+
+        addPassageQuestion("She made prodigious strides as a writer and learned to temper her overwrought outpourings. " +
+                "Overwrought in the sentence above", "merriment", "exaggerated", "laud", 2, 1);
+
+        addPassageQuestion("Fire at Sea' has been praised for offering an oblique alternative to a more conventional documentary. " +
+                "Oblique in the sentence above", "incline", "missive", "indirect", 3, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----P----
+
+        addPassageQuestion("The government has tried to placate voters without abandoning its policies. " +
+                "Placate in the sentence above", "appease", "exaggerated", "laud", 1, 1);
+
+        addPassageQuestion("She wore an aquiline scowl, quibbling with the questions and, when pushed, cleaving to evasive platitudes. " +
+                "Platitude in the sentence above", "incline", "missive", "truism", 3, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----R----
+
+        addPassageQuestion("Unable to digest quickly the baffling events of the day, he ruminated about them till four in the morning. " +
+                "Ruminate in the sentence above", "ponder", "exaggerated", "laud", 1, 1);
+
+        addPassageQuestion("It commanded its followers to be reticent, to never degrade intimate emotions by parading them in public. " +
+                "Reticence in the sentence above", "incline", "reserved", "truism", 2, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----S----
+
+        addPassageQuestion("Yet life in the ocean can still mount sublime spectacles. " +
+                "Sublime in the sentence above", "awesome", "exaggerated", "retort", 1, 1);
+
+        addPassageQuestion("Poverty and economic decline has led to the surly separation of a left-behind, resentful working class. " +
+                "Surly in the sentence above", "incline", "reserved", "glum", 3, 1);
+
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----T----
+
+        addPassageQuestion("The pound, after a few torrid days of trading immediately after the vote, has stabilized. " +
+                "Torrid in the sentence above", "tribulation", "trap", "retort", 1, 1);
+
+        addPassageQuestion("It is a tome to which most recent arguments about regulation and economic reform are merely annotations. " +
+                "Tome in the sentence above", "reserved", "book", "glum", 2, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        //*----V----
+
+        addPassageQuestion("Mr. Silver delighted in savaging commentators who relied on vapid cliches like momentum-shifts. " +
+                "Vapid: in the sentence above", "insipid", "glum", "retort", 1, 1);
+
+        addPassageQuestion("He said this would remove a lingering vestige of the cold war. " +
+                "Vestige in the sentence above", "reserved", "book", "remnant", 3, 1);
 
         //--------------------------------------------------------------------------------------------------------------
 
         /**---------------------- Level 2 -------------------------------------------------*/
 
-        addPassageQuestion("Not a trace of humiliation or abasement was to be seen in the Duke's countenance or demeanour. " +
+        //*-----A----
+
+        addPassageQuestion("Not a trace of humiliation or abasement was to be seen in the Duke's countenance or demeanor. " +
                 "Abasement in the sentence above", "sobriety", "belittlement", "aggravate", 2,2);
 
         addPassageQuestion("The sky remained dark around us, but the clouds of dust abated somewhat. " +
@@ -616,6 +1084,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
                 "Acolyte in the sentence above", "cryptic", "assistant", "euphoria", 2, 2);
 
         //-------------------------------------------------------------------------------------------------------
+
+        //*----B-------
 
         addPassageQuestion("They heard the stomping from inside their apartment and the barrage of clicks and bangs from locks being disengaged. " +
                 "Barrage in the sentence above", "arcane", "refine", "profusion", 3, 2);
@@ -634,7 +1104,129 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         //--------------------------------------------------------------------------------
 
+        //*----C-------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----D-------
+
+        addPassageQuestion("Critics—so far a minority—deride him for posing incessantly with fans and celebrities. " +
+                "Deride in the sentence above", "ridicule", "refine", "fickle", 1, 2);
+
+        addPassageQuestion("Sometimes the old army dictum 'Don’t volunteer for anything' must be broken. " +
+                "Dictum in the sentence above", "cautious", "maxim", "concur", 2, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----E------
+
+        addPassageQuestion("He was called upon to elucidate the disputed points in his article. " +
+                "Elucidate in the sentence above", "arcane", "clarify", "fickle", 2, 2);
+
+        addPassageQuestion("In his speech, the president will extol the astronauts, calling them the pioneers of the Space Age. " +
+                "Extol in the sentence above", "cautious", "praise", "concur", 2, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----F-------
+
+        addPassageQuestion("The fetid smog that settled could join the ranks of these game-changing environmental disruptions. " +
+                "Fetid in the sentence above", "stinking", "refine", "fickle", 1, 2);
+
+        addPassageQuestion("You should overlook his foible; no one is perfect. " +
+                "Foible in the sentence above", "cautious", "brave", "failing", 3, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*---G-------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----I------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----L------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----M------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----N------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----P------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----Q-----
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        //*----S------
+
+        addPassageQuestion("For one thing, voters can be capricious which causes elections to often misfire. " +
+                "Capricious in the sentence above", "arcane", "refine", "fickle", 3, 2);
+
+        addPassageQuestion("This is an area where we need to be extraordinarily careful and circumspect. " +
+                "Circumspect in the sentence above", "cautious", "brave", "concur", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
         /**---------------------- Level 3 -------------------------------------------------*/
+
+        //*------A----
 
         addPassageQuestion("The scientific mood dominated them, the artistic and practical moods were in abeyance. " +
                 "Abeyance in the sentence above", "anomaly", "remission", "chisel", 2,3);
@@ -652,6 +1244,8 @@ public class GameDbHelper extends SQLiteOpenHelper {
                 "Canard in the sentence above", "cryptic", "rumor", "shard", 2, 3);
 
         //--------------------------------------------------------------------------------
+
+        //*---------C-------
 
         addPassageQuestion("An outside leader is often needed to serve as a catalyst for change. " +
                 "Catalyst in the sentence above", "fervid", "vestige", "stimulus", 3, 3);
