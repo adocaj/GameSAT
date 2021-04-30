@@ -181,51 +181,7 @@ public class GameDbHelper extends SQLiteOpenHelper {
         fillWordQuestTable();
     }
 
-    // fill word database with word questions
 
-    public void fillWordQuestTable(){
-
-        //---------------------- Level 1 -------------------------------------------------
-
-        addWordQuestion("Aberration", "anomaly", "remote", "desist", 1, 1);
-
-        addWordQuestion("Abreast", "uncertain", "informed", "above", 2, 1);
-
-        addWordQuestion("Abstain", "entice", "refrain", "abhor", 2, 1);
-
-        addWordQuestion("Abyss", "attract", "entice", "void", 3, 1);
-
-        addWordQuestion("Adept", "proficient", "uncertain", "adorn", 1, 1);
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        //---------------------- Level 2 -------------------------------------------------
-
-        addWordQuestion("Abasement", "anomaly", "belittlement", "aggravate", 2,2);
-
-        addWordQuestion("Abate", "subside", "adorn", "stray", 1,2);
-
-        addWordQuestion("Accession", "acumen", "combustion", "joining",3,2);
-
-        addWordQuestion("Acerbic", "caustic", "edible", "dullard", 1, 2);
-
-        addWordQuestion("Acolyte", "cryptic", "assistant", "euphoria", 2, 2);
-
-        //--------------------------------------------------------------------------------
-
-        //---------------------- Level 3 -------------------------------------------------
-
-        addWordQuestion("Abeyance", "anomaly", "remission", "chisel", 2,3);
-
-        addWordQuestion("Abjure", "reject", "adorn", "stray", 1,3);
-
-        addWordQuestion("Anodyne", "acumen", "combustion", "inoffensive",3,3);
-
-        addWordQuestion("Bilk", "swindle", "gallant", "dullard", 1, 3);
-
-        addWordQuestion("Canard", "cryptic", "gossip", "shard", 2, 3);
-
-    }
 
     //***********************************************************************************************************
     private void addWordQuestion(String word, String opt1, String opt2, String opt3, int ansNr, int level){
@@ -512,9 +468,96 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
     // fill word database with word questions
 
+    public void fillWordQuestTable(){
+
+        /**---------------------- Level 1 -------------------------------------------------*/
+
+        addWordQuestion("Aberration", "anomaly", "remote", "desist", 1, 1);
+
+        addWordQuestion("Abreast", "uncertain", "informed", "above", 2, 1);
+
+        addWordQuestion("Abstain", "entice", "refrain", "abhor", 2, 1);
+
+        addWordQuestion("Abyss", "attract", "entice", "void", 3, 1);
+
+        addWordQuestion("Adept", "proficient", "uncertain", "adorn", 1, 1);
+
+        //---------------------------------------------------------------------------------------------------------
+
+        addWordQuestion("Blight", "mite", "sophisticate", "damage", 3, 1);
+
+        addWordQuestion("Blithe", "bright", "indifferent", "vivacious", 2, 1);
+
+        addWordQuestion("Bolster", "suffice", "strengthen", "cordial", 2, 1);
+
+        addWordQuestion("Bombastic", "pompous", "cordial", "jabber", 1, 1);
+
+        addWordQuestion("Boycott", "rejection", "beguile", "implosion", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        addWordQuestion("Cacophony", "calm", "sinous", "clamor", 3, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        /**---------------------- Level 2 -------------------------------------------------*/
+
+        addWordQuestion("Abasement", "anomaly", "belittlement", "aggravate", 2,2);
+
+        addWordQuestion("Abate", "subside", "adorn", "stray", 1,2);
+
+        addWordQuestion("Accession", "acumen", "combustion", "joining",3,2);
+
+        addWordQuestion("Acerbic", "caustic", "edible", "dullard", 1, 2);
+
+        addWordQuestion("Acolyte", "cryptic", "assistant", "euphoria", 2, 2);
+
+        //-------------------------------------------------------------------------------------------------------------
+
+        addWordQuestion("Barrage", "bogus", "edify", "abundance", 3, 2);
+
+        addWordQuestion("Bevy", "cluster", "brave", "evasive", 1, 2);
+
+        addWordQuestion("Boor", "garrulous", "lout", "foster", 2, 2);
+
+        addWordQuestion("Bucolic", "benison", "entreat", "rustic", 3, 2);
+
+        addWordQuestion("Apprise", "notify", "boggle", "rant", 1, 2);
+
+        //--------------------------------------------------------------------------------
+
+        /**---------------------- Level 3 -------------------------------------------------*/
+
+        addWordQuestion("Abeyance", "anomaly", "remission", "chisel", 2,3);
+
+        addWordQuestion("Abjure", "reject", "adorn", "stray", 1,3);
+
+        addWordQuestion("Anodyne", "acumen", "combustion", "inoffensive",3,3);
+
+        addWordQuestion("Bilk", "swindle", "gallant", "dullard", 1, 3);
+
+        addWordQuestion("Canard", "cryptic", "gossip", "shard", 2, 3);
+        //-------------------------------------------------------------------------------------------------
+
+        addWordQuestion("Catalyst", "esoteric", "imbroglio", "stimulus", 3, 3);
+
+        addWordQuestion("Catharsis", "relief", "aplomb", "cabal", 1, 3);
+
+        addWordQuestion("Conscript", "lugubrious", "recruit", "officious", 2, 3);
+
+        addWordQuestion("Cosset", "shunt", "inure", "indulge", 3, 3);
+
+        addWordQuestion("Coterie", "clique", "cater", "denouement", 1, 3);
+
+        //-------------------------------------------------------------------------------------------------------------
+
+    }
+
+    // fill database with passage questions
+
     public void fillPassageQuestTable(){
 
-        //---------------------- Level 1 -------------------------------------------------
+        /**---------------------- Level 1 -------------------------------------------------*/
 
         addPassageQuestion("Like the rest of the world, the store is a slight aberration of normal. " +
                 "Aberration in the sentence above", "dormant", "remote", "anomaly", 3, 1);
@@ -531,14 +574,36 @@ public class GameDbHelper extends SQLiteOpenHelper {
         addPassageQuestion("They became adept at explaining radiation basics and risks to residents and officials. " +
                 "Adept in the sentence above", "proficient", "uncertain", "adorn", 1, 1);
 
+        //------------------------------------------------------------------------------------------------------------
+
+        addPassageQuestion("Because of slowing growth and climate-related blights, the forests will become an emissions source. " +
+                "Blight in the sentence above", "damage", "mite", "pest", 1, 1);
+
+        addPassageQuestion("Given the timeline that we face, this blithe acceptance of indecision is a road map for catastrophe. " +
+                "Blithe in the sentence above", "vivacious", "bright", "indifferent", 3, 1);
+
+        addPassageQuestion("The case against the defendant has been bolstered by the discovery of important new evidence. " +
+                        "Bolster in the sentence above","elaborate", "forgery", "strengthen", 3, 1);
+
+        addPassageQuestion("He was a showy, bombastic man, with a weakness for fine clothes and other personal adornments. " +
+                "Bombastic in the sentence above", "brass", "turgid", "elaborate", 2, 1);
+
+        addPassageQuestion("Pressure groups urged a consumer boycott of clothing brands made using child labour. " +
+                "Boycott in the sentence above", "beguile", "rejection", "pilfer", 2, 1);
+
         //--------------------------------------------------------------------------------------------------------------
 
-        //---------------------- Level 2 -------------------------------------------------
+        addPassageQuestion("The cacophony of voices faded to a dull hum as she began to read what she’d written. " +
+                "Cacophony in the sentence above", "clamor", "calm", "sordid", 1, 1);
+
+        //--------------------------------------------------------------------------------------------------------------
+
+        /**---------------------- Level 2 -------------------------------------------------*/
 
         addPassageQuestion("Not a trace of humiliation or abasement was to be seen in the Duke's countenance or demeanour. " +
                 "Abasement in the sentence above", "sobriety", "belittlement", "aggravate", 2,2);
 
-        addPassageQuestion("The sky remained dark around us, but the clouds of dust abated somewhat." +
+        addPassageQuestion("The sky remained dark around us, but the clouds of dust abated somewhat. " +
                 "Abate in the sentence above", "subside", "adorn", "stray", 1,2);
 
         addPassageQuestion("Each State will declare, at the time of its accession, in which of the said classes it desires to be placed. " +
@@ -550,9 +615,26 @@ public class GameDbHelper extends SQLiteOpenHelper {
         addPassageQuestion("The priest, his acolytes, the director and I all went outside. " +
                 "Acolyte in the sentence above", "cryptic", "assistant", "euphoria", 2, 2);
 
+        //-------------------------------------------------------------------------------------------------------
+
+        addPassageQuestion("They heard the stomping from inside their apartment and the barrage of clicks and bangs from locks being disengaged. " +
+                "Barrage in the sentence above", "arcane", "refine", "profusion", 3, 2);
+
+        addPassageQuestion("Then a bevy of laughing tourists passed between and separated them. " +
+                "Bevy in the sentence above", "cluster", "brave", "concur", 1, 2);
+
+        addPassageQuestion("End a sentence in a preposition, and there are still people who will think you a boor. " +
+                "Boor in the sentence above", "bright", "lout", "derelict", 2, 2);
+
+        addPassageQuestion("We dream of bucolic scenes in grey, a grey stream, a grey tree, grey boulders. " +
+                "Bucolic in the sentence above", "bane", "prudish", "rustic", 3, 2);
+
+        addPassageQuestion("Secret information is often useful in apprising countries of the intentions of others. " +
+                "Apprise in the sentence above", "notify", "stigmatize", "contrite", 1, 2);
+
         //--------------------------------------------------------------------------------
 
-        //---------------------- Level 3 -------------------------------------------------
+        /**---------------------- Level 3 -------------------------------------------------*/
 
         addPassageQuestion("The scientific mood dominated them, the artistic and practical moods were in abeyance. " +
                 "Abeyance in the sentence above", "anomaly", "remission", "chisel", 2,3);
@@ -568,6 +650,22 @@ public class GameDbHelper extends SQLiteOpenHelper {
 
         addPassageQuestion("Elephants will be admitted, too, on account of the unjust canard concerning their fear of mice." +
                 "Canard in the sentence above", "cryptic", "rumor", "shard", 2, 3);
+
+        //--------------------------------------------------------------------------------
+
+        addPassageQuestion("An outside leader is often needed to serve as a catalyst for change. " +
+                "Catalyst in the sentence above", "fervid", "vestige", "stimulus", 3, 3);
+
+        addPassageQuestion("The blood pressure is lowered by such catharsis, and the heart is often slowed. " +
+                "Catharsis in the sentence above", "relief", "obsequious", "spurious", 1,3);
+
+        addPassageQuestion("She was successfully conscripted into the team. " +
+                "Conscript in the sentence above", "chary", "recruit", "dulcet", 2, 3);
+
+        addPassageQuestion("A luxury spa where guests are cosseted with no expense spared. " +
+                "Cosset in the sentence above", "shunt", "sordid", "indulge", 3, 3);
+
+        //--------------------------------------------------------------------------------
 
     }
 

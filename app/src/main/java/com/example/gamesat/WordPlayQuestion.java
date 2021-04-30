@@ -59,9 +59,9 @@ public class WordPlayQuestion extends AppCompatActivity {
     private long timeLeftInMillis;
 
     private Question currentWQ;//current word question
-    private int wordPlayScore = 3;
+    private int wordPlayScore = 5;
     private int minScore = 0;
-    private int maxScore = 15;
+    private int maxScore = 30;
 
     private boolean wordQuestAnswered = false; // what happens when button is clicked
     private int wordQuestionCount; // word questions count for a level
@@ -70,6 +70,8 @@ public class WordPlayQuestion extends AppCompatActivity {
     private int questIndex = 0; // index starts at 0
     private int prevIndex = 0;
     private long wordGameTime = 0L;
+
+    private int levelTippingPoint = 10;
 
     GameDbHelper dbHelper;
 
@@ -210,13 +212,13 @@ public class WordPlayQuestion extends AppCompatActivity {
         if (wordPlayScore != minScore && wordPlayScore != maxScore){
 
             //------------------------ set the timer and level ---
-            if (0 < wordPlayScore && wordPlayScore < 5){
+            if (0 < wordPlayScore && wordPlayScore < levelTippingPoint){
                 timeLeftInMillis = CountDown_In_Millis_Lev_1;
                 level = 1;
-            } else if (5 <= wordPlayScore && wordPlayScore < 10){
+            } else if (levelTippingPoint <= wordPlayScore && wordPlayScore < 2*levelTippingPoint){
                 timeLeftInMillis = CountDown_In_Millis_Lev_2;
                 level = 2;
-            } else if (10 <= wordPlayScore && wordPlayScore < 15){
+            } else if (2*levelTippingPoint <= wordPlayScore && wordPlayScore < 3*levelTippingPoint){
                 timeLeftInMillis = CountDown_In_Millis_Lev_3;
                 level = 3;
             }

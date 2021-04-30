@@ -54,9 +54,9 @@ public class PassagePlayQuestion extends AppCompatActivity {
     private long timeLeftInMillis;
 
     private Question currentPQ;//current word question
-    private int passPlayScore = 3;
+    private int passPlayScore = 5;
     private int minScore = 0;
-    private int maxScore = 15;
+    private int maxScore = 30;
 
     private boolean passQuestAnswered = false; // what happens when button is clicked
     private int passQuestionCount; // pass questions count for a level
@@ -65,6 +65,8 @@ public class PassagePlayQuestion extends AppCompatActivity {
     private int questIndex = 0; // index starts at 0
     private int prevIndex = 0;
     private long passGameTime = 0L;
+
+    private int levelTippingPoint = 10;
 
     //-----------------------------------------------
     GameDbHelper gameDbHelper;
@@ -206,13 +208,13 @@ public class PassagePlayQuestion extends AppCompatActivity {
         if (passPlayScore != minScore && passPlayScore != maxScore){
 
             //------------------------ set the timer and level ---
-            if (0 < passPlayScore && passPlayScore < 5){
+            if (0 < passPlayScore && passPlayScore < levelTippingPoint){
                 timeLeftInMillis = CountDown_In_Millis_Lev_1;
                 level = 1;
-            } else if (5 <= passPlayScore && passPlayScore < 10){
+            } else if (levelTippingPoint <= passPlayScore && passPlayScore < 2*levelTippingPoint){
                 timeLeftInMillis = CountDown_In_Millis_Lev_2;
                 level = 2;
-            } else if (10 <= passPlayScore && passPlayScore < 15){
+            } else if (2*levelTippingPoint <= passPlayScore && passPlayScore < 3*levelTippingPoint){
                 timeLeftInMillis = CountDown_In_Millis_Lev_3;
                 level = 3;
             }
