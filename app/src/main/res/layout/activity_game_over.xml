@@ -92,7 +92,7 @@
             android:layout_gravity="center"
             android:background="@color/transparent"
             android:text="@string/exit"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="337dp"

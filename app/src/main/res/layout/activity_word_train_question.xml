@@ -166,6 +166,7 @@
             android:layout_gravity="center"
             android:background="@color/transparent"
             android:text="@string/exit"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="337dp"

@@ -22,16 +22,17 @@
 
 
     <TextView
-        android:id="@+id/text_vew_word_question1"
+        android:id="@+id/text_vew_pass_train_quest"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="272dp"
         android:gravity="left"
         android:text="@string/questionP"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="18sp"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -165,6 +166,7 @@
             android:layout_gravity="center"
             android:background="@color/transparent"
             android:text="@string/exit"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="337dp"

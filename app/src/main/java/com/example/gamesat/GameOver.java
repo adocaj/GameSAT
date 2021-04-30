@@ -72,8 +72,8 @@ public class GameOver extends AppCompatActivity {
     private void showMessage(int gameScore){
         if (gameScore == 0){
             textViewGameOver.setText("Game Over.");
-            gameDbHelper.clearUserNameTimeWordTable();
-            gameDbHelper.clearUserNameTimePassageTable();
+            //gameDbHelper.clearUserNameTimeWordTable(); // we can clear both leaderboards
+            //gameDbHelper.clearUserNameTimePassageTable(); // from here
 
         } else {
             textViewGameOver.setText("Congratulations! You won.");

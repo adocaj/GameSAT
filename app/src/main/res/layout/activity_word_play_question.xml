@@ -242,7 +242,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:background="@color/transparent"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:text="@string/exit"
             android:textColor="@color/white"
             android:textSize="18sp"

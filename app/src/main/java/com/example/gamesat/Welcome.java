@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class Welcome extends AppCompatActivity {
 
-    Button buttonPlay, buttonTrain, buttonExit;
+    Button buttonPlay, buttonTrain, buttonExit, buttonHelp;
     GameDbHelper gameDbHelper;
 
 
@@ -25,6 +25,7 @@ public class Welcome extends AppCompatActivity {
         buttonPlay = (Button) findViewById(R.id.buttonPlay);
         buttonTrain = (Button) findViewById(R.id.buttonTrain);
         buttonExit = (Button) findViewById(R.id.buttonExit);
+        buttonHelp = findViewById(R.id.buttonHelp);
 
         // username info ---||||----
         gameDbHelper = new GameDbHelper(this);
@@ -58,6 +59,16 @@ public class Welcome extends AppCompatActivity {
             }
         });
     //----------------------------------------------------------------------------
+
+        buttonHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Help.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //----------------------------------------------------------------------
 
     }
 }
