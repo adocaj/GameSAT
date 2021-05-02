@@ -54,9 +54,9 @@ public class PassagePlayQuestion extends AppCompatActivity {
     private long timeLeftInMillis;
 
     private Question currentPQ;//current word question
-    private int passPlayScore = 3;
+    private int passPlayScore = 5;
     private int minScore = 0;
-    private int maxScore = 15;
+    private int maxScore = 30;
 
     private boolean passQuestAnswered = false; // what happens when button is clicked
     private int passQuestionCount; // pass questions count for a level
@@ -66,7 +66,7 @@ public class PassagePlayQuestion extends AppCompatActivity {
     private int prevIndex = 0;
     private long passGameTime = 0L;
 
-    private int levelTippingPoint = 5;
+    private int levelTippingPoint = 10;
     private boolean levelReached2 = false;
     private boolean levelReached3 = false;
 

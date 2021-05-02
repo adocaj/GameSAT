@@ -59,9 +59,9 @@ public class WordPlayQuestion extends AppCompatActivity {
     private long timeLeftInMillis;
 
     private Question currentWQ;//current word question
-    private int wordPlayScore = 3;
+    private int wordPlayScore = 5;
     private int minScore = 0;
-    private int maxScore = 15;
+    private int maxScore = 30;
 
     private boolean wordQuestAnswered = false; // what happens when button is clicked
     private int wordQuestionCount; // word questions count for a level
@@ -71,7 +71,7 @@ public class WordPlayQuestion extends AppCompatActivity {
     private int prevIndex = 0;
     private long wordGameTime = 0L;
 
-    private int levelTippingPoint = 5;
+    private int levelTippingPoint = 10;
     private boolean levelReached2 = false;
     private boolean levelReached3 = false;
 
