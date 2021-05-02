@@ -69,7 +69,7 @@
         android:id="@+id/text_vew_passage_question"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="292dp"
         android:gravity="left"
         android:padding="5dp"
         android:text="@string/questionP"

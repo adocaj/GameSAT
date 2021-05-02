@@ -54,9 +54,9 @@ public class PassagePlayQuestion extends AppCompatActivity {
     private long timeLeftInMillis;
 
     private Question currentPQ;//current word question
-    private int passPlayScore = 5;
+    private int passPlayScore = 3;
     private int minScore = 0;
-    private int maxScore = 30;
+    private int maxScore = 15;
 
     private boolean passQuestAnswered = false; // what happens when button is clicked
     private int passQuestionCount; // pass questions count for a level
@@ -66,7 +66,9 @@ public class PassagePlayQuestion extends AppCompatActivity {
     private int prevIndex = 0;
     private long passGameTime = 0L;
 
-    private int levelTippingPoint = 10;
+    private int levelTippingPoint = 5;
+    private boolean levelReached2 = false;
+    private boolean levelReached3 = false;
 
     //-----------------------------------------------
     GameDbHelper gameDbHelper;
@@ -208,15 +210,17 @@ public class PassagePlayQuestion extends AppCompatActivity {
         if (passPlayScore != minScore && passPlayScore != maxScore){
 
             //------------------------ set the timer and level ---
-            if (0 < passPlayScore && passPlayScore < levelTippingPoint){
+            if (0 < passPlayScore && passPlayScore < levelTippingPoint && !levelReached2){
                 timeLeftInMillis = CountDown_In_Millis_Lev_1;
                 level = 1;
-            } else if (levelTippingPoint <= passPlayScore && passPlayScore < 2*levelTippingPoint){
+            } else if (levelTippingPoint <= passPlayScore && passPlayScore < 2*levelTippingPoint && !levelReached3){
                 timeLeftInMillis = CountDown_In_Millis_Lev_2;
                 level = 2;
+                levelReached2 = true;
             } else if (2*levelTippingPoint <= passPlayScore && passPlayScore < 3*levelTippingPoint){
                 timeLeftInMillis = CountDown_In_Millis_Lev_3;
                 level = 3;
+                levelReached3 = true;
             }
 
             setPassageQuestionList(level); // select the right list
@@ -323,7 +327,7 @@ public class PassagePlayQuestion extends AppCompatActivity {
 
         countDownTimer.cancel(); // stop the timer once the answer has been locked in
 
-        switch (level){ // compute how long the user takes to complete the game
+        switch (currentPQ.getLevel()){ // compute how long the user takes to complete the game
             case 1:
                 passGameTime += (CountDown_In_Millis_Lev_1 - timeLeftInMillis);
                 break;

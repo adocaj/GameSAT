@@ -19,7 +19,7 @@ import java.util.List;
 public class GameDbHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "GameSat.db";
-    private static final int DATABASE_VERSION = 26; /**  Reset the database num for new tables*/
+    private static final int DATABASE_VERSION = 27; /**  Reset the database num for new tables*/
 
 
     public GameDbHelper(Context context) {
